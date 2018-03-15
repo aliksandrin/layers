@@ -1,14 +1,11 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class WeekDay {
     private static final Logger logger = LoggerFactory.getLogger(WeekDay.class);
 
-    public String get(Date date) {
+    public static String get(Date date) {
         logger.info("Discovering the week of the day...");
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

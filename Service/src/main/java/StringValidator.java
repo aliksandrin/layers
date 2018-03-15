@@ -8,9 +8,8 @@ import java.util.Locale;
 
 public class StringValidator {
     private static final Logger logger = LoggerFactory.getLogger(StringValidator.class);
-    private static WeekDay weekDay = new WeekDay();
 
-    public String validate(String dateString) {
+    public static String validate(String dateString) {
         logger.info("Validation started...");
 
         String format = "dd.MM.yyyy";
@@ -27,7 +26,7 @@ public class StringValidator {
             System.exit(0);
         }
 
-        String dayOfWeek = weekDay.get(date);
+        String dayOfWeek = WeekDay.get(date);
 
 
         return dayOfWeek;
