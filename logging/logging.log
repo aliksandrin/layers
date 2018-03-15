@@ -1,0 +1,55 @@
+2018-03-15 14:09:09 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 14:09:09 INFO  [main]: Validation proceed.
+2018-03-15 14:09:09 INFO  [main]: Validation successful!
+2018-03-15 14:09:09 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 14:09:09 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 14:13:29 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 14:13:29 INFO  [main]: Validation proceed.
+2018-03-15 14:13:29 INFO  [main]: Validation successful!
+2018-03-15 14:13:29 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 14:13:29 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 14:44:55 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 14:44:55 INFO  [main]: Validation proceed.
+2018-03-15 14:44:55 INFO  [main]: Validation successful!
+2018-03-15 14:44:55 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 14:44:55 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 14:48:22 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 14:48:22 INFO  [main]: Validation proceed.
+2018-03-15 14:48:22 INFO  [main]: Validation successful!
+2018-03-15 14:48:22 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 14:48:22 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:05:28 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:05:28 INFO  [main]: Validation proceed.
+2018-03-15 15:05:28 INFO  [main]: Validation successful!
+2018-03-15 15:05:28 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 15:05:28 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:17:23 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:17:23 INFO  [main]: Validation proceed.
+2018-03-15 15:17:23 INFO  [main]: Validation successful!
+2018-03-15 15:17:23 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 15:17:23 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:33:40 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:33:40 INFO  [main]: Validation proceed.
+2018-03-15 15:33:40 INFO  [main]: Your date is valid, please wait...!
+2018-03-15 15:33:40 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 15:33:40 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:33:52 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:33:52 INFO  [main]: Validation proceed.
+2018-03-15 15:33:52 INFO  [main]: Your date is valid, please wait...
+2018-03-15 15:33:52 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 15:33:52 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:34:50 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:34:50 INFO  [main]: Validation started.
+2018-03-15 15:34:50 INFO  [main]: Your date is valid, please wait...
+2018-03-15 15:34:50 INFO  [main]: Trying to discover the week of the day.
+2018-03-15 15:34:50 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:35:11 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:35:11 INFO  [main]: Validation started.
+2018-03-15 15:35:11 INFO  [main]: Your date is valid, please wait...
+2018-03-15 15:35:11 INFO  [main]: Discovering the week of the day.
+2018-03-15 15:35:11 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
+2018-03-15 15:35:25 INFO  [main]: Date string 22.11.1977 received.
+2018-03-15 15:35:25 INFO  [main]: Validation started...
+2018-03-15 15:35:25 INFO  [main]: Your date is valid, please wait...
+2018-03-15 15:35:25 INFO  [main]: Discovering the week of the day...
+2018-03-15 15:35:25 INFO  [main]: The day of the week for 22.11.1977 date is tuesday.
