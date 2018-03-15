@@ -6,8 +6,8 @@ There are three modules:
 - DAO
 		receives a Date from Service and finds out what is tha day of the week for this date
 
-
-Also I used slf4j with log4j. It writes log in System.out and file near our .jar.
+NOTE: 
+Also I used slf4j with log4j. It writes log in System.out and file auto-created near our .jar.
 
 KNOWN ISSUES:
 - If you try to run .jar file from bash, there will be an errors about .properties file before result. But it works.
