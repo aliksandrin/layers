@@ -15,6 +15,7 @@
       <module name="DAO" target="1.8" />
       <module name="layers" target="1.8" />
       <module name="Service" target="1.8" />
+      <module name="trash" target="1.8" />
       <module name="UI" target="1.8" />
     </bytecodeTargetLevel>
   </component>

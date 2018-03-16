@@ -7,7 +7,7 @@ public class StringReceiver {
 
     public static void main(String[] args) {
         // there dd.MM.yyyy must be
-        PropertyConfigurator.configure("log4j.properties");
+        //PropertyConfigurator.configure("./log4j.properties");
 
         if (args.length == 0) {
             logger.error("You didn't enter an argument. Please try again later ;)");
