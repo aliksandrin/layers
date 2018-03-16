@@ -10,5 +10,6 @@ NOTE:
 Also I used slf4j with log4j. It writes log in System.out and file auto-created near our .jar.
 
 KNOWN ISSUES:
+FIXED (in a strange way)
 - If you try to run .jar file from bash, there will be an errors about .properties file before result. But it works.
 	I'd like to ask about it during our friday lesson.
