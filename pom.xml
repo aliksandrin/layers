@@ -100,7 +100,6 @@
                     </plugin>
                 </plugins>
             </build>
-
         </profile>
 
         <profile>
@@ -127,6 +126,4 @@
             </properties>
         </profile>
     </profiles>
-
-
 </project>
