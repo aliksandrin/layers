@@ -10,8 +10,6 @@ public class StringValidator {
     private static final Logger logger = LoggerFactory.getLogger(StringValidator.class);
 
     public static String validate(String dateString) throws ParseException {
-        logger.info("Validation started...");
-
         String format = "dd.MM.yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         simpleDateFormat.setLenient(false);
@@ -22,6 +20,7 @@ public class StringValidator {
         } catch (ParseException e) {
             throw new ParseException("Your string doesn't match required date format! Please try again later ;)", 1);
         }
+
         logger.info("Your date is valid, please wait...");
 
         String dayOfWeek = WeekDay.get(date);

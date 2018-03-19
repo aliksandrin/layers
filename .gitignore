@@ -1,6 +1,6 @@
 *.iml
-.idea/
-out/
+/.idea/
+/out/
 *.txt
-logging/
-target/
+/logging/
+/target/

@@ -1,6 +1,5 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import static org.powermock.api.mockito.PowerMockito.*;
 public class StringReceiverTest {
 
     @Test
-    public void mainWithArgument() throws ParseException{
+    public void mainWithArgument() throws ParseException {
         mockStatic(Logger.class);
         mockStatic(StringValidator.class);
         when(StringValidator.validate("13.03.2018")).thenReturn("tuesday");
@@ -25,20 +24,26 @@ public class StringReceiverTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void mainWithNoArgument(){
+    public void mainWithNoArgument() throws ParseException{
         mockStatic(Logger.class);
         StringReceiver.main(null);
         verifyStatic();
     }
 
     @Test(expected = ParseException.class)
-    public void mainSimpleString() throws ParseException{
+    public void mainSimpleString() throws ParseException {
         mockStatic(Logger.class);
         mockStatic(StringValidator.class);
         when(StringValidator.validate(any())).thenThrow(new ParseException("Your string doesn't match required date format! Please try again later ;)", 1));
 
         StringReceiver.main(new String[]{"SomeString"});
         verifyStatic();
-        Mockito.verifyZeroInteractions(StringValidator.class);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void mainNullString() throws ParseException {
+        mockStatic(Logger.class);
+        StringReceiver.main(new String[]{});
+        verifyStatic();
     }
 }

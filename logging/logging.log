@@ -206,3 +206,23 @@
 2018-03-19 18:20:27 ERROR [main]: Your string doesn't match required date format! Please try again later ;)
 2018-03-19 18:25:22 ERROR [main]: Null is not valid argument. Please try again later ;)
 2018-03-19 18:25:38 ERROR [main]: Null is not valid argument. Please try again later ;)
+2018-03-19 19:42:15 ERROR [main]: Null is not valid argument. Please try again later ;)
+2018-03-19 19:42:15 INFO  [main]: Date string null received.
+2018-03-19 19:42:15 INFO  [main]: Validation started...
+2018-03-19 19:46:22 ERROR [main]: Null is not valid argument. Please try again later ;)
+2018-03-19 19:46:22 INFO  [main]: The day of the week for null date is null.
+2018-03-19 19:48:08 ERROR [main]: Null is not valid argument. Please try again later ;)
+2018-03-19 19:48:08 INFO  [main]: The day of the week for null date is null.
+2018-03-19 19:51:39 ERROR [main]: 0
+2018-03-19 19:51:39 INFO  [main]: The day of the week for null date is null.
+2018-03-19 19:59:19 ERROR [main]: 0
+2018-03-19 19:59:19 INFO  [main]: The day of the week for null date is null.
+2018-03-19 20:03:35 ERROR [main]: 0
+2018-03-19 20:03:35 INFO  [main]: The day of the week for null date is null.
+2018-03-19 20:08:08 INFO  [main]: Validation started...
+2018-03-19 20:08:08 ERROR [main]: Your string doesn't match required date format! Please try again later ;)
+2018-03-19 20:08:37 INFO  [main]: Validation started...
+2018-03-19 20:08:37 ERROR [main]: Your string doesn't match required date format! Please try again later ;)
+2018-03-19 20:08:57 INFO  [main]: Validation started...
+2018-03-19 20:08:57 ERROR [main]: Your string doesn't match required date format! Please try again later ;)
+2018-03-19 20:09:21 INFO  [main]: Validation started...

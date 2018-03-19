@@ -6,24 +6,19 @@ import java.text.ParseException;
 public class StringReceiver {
     private static final Logger logger = LoggerFactory.getLogger(StringReceiver.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // there dd.MM.yyyy must be
-
-        String dateString = null;
+        String dateString;
+        String result;
         try {
             dateString = args[0];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            logger.error("Null is not valid argument. Please try again later ;)");
-            System.exit(1);
-        }
-        logger.info(String.format("Date string %s received.", dateString));
-
-        String result = null;
-        try {
+            logger.info("Validation started...");
             result = StringValidator.validate(dateString);
         } catch (ParseException e) {
-            logger.error(e.getMessage());
-            System.exit(1);
+            throw new ParseException(e.getMessage(), 1);
+        }
+        catch (NullPointerException | ArrayIndexOutOfBoundsException e){
+            throw new NullPointerException("Null is not valid argument. Please try again later ;)");
         }
         logger.info(String.format("The day of the week for %s date is %s.", dateString, result));
     }
