@@ -1,3 +1,6 @@
+package com.javaextreme.service;
+
+import com.javaextreme.dao.WeekDay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +17,7 @@ public class StringValidator {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         simpleDateFormat.setLenient(false);
 
-        Date date = null;
+        Date date;
         try {
             date = simpleDateFormat.parse(dateString);
         } catch (ParseException e) {

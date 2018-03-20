@@ -7,9 +7,14 @@ There are three modules:
 	receives a Date from Service and finds out what is tha day of the week for this date
 
 NOTE:
-Also I used slf4j with log4j. It writes log in System.out and file auto-created near our .jar.
+Also I used slf4j with log4j. It writes log in System.out and file auto-created near our .jar ot project.
 
-KNOWN ISSUES:
-FIXED (in a strange way)
-- If you try to run .jar file from bash, there will be an errors about .properties file before result. But it works.
-	I'd like to ask about it during our friday lesson.
+RELEASED:
+- Unit test for all classes
+- Integration Tests
+- Test Categories
+- Maven profiles for on/off tests
+
+FIX:
+- lo4j.properties now log4j.xml
+- usage <dependency-management>

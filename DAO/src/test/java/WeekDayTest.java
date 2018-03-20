@@ -1,5 +1,8 @@
+import categories.JunitTests;
+import com.javaextreme.dao.WeekDay;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import java.util.Date;
 
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
+@Category(JunitTests.class)
 @RunWith(Parameterized.class)
 public class WeekDayTest {
     private String day;

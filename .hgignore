@@ -1,6 +1,11 @@
-*.iml
-/.idea/
-/out/
-*.txt
-/logging/
+syntax: regexp
+.git
+.git/
+.idea/
+.txt
+.gitignore
+.log
+.iml
 /target/
+/out/
+out/

@@ -1,4 +1,8 @@
+import categories.JunitTests;
+import com.javaextreme.service.StringValidator;
+import com.javaextreme.ui.StringReceiver;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -9,6 +13,7 @@ import java.text.ParseException;
 import static org.mockito.Matchers.any;
 import static org.powermock.api.mockito.PowerMockito.*;
 
+@Category(JunitTests.class)
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(StringValidator.class)
 public class StringReceiverTest {
@@ -24,13 +29,13 @@ public class StringReceiverTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void mainWithNoArgument() throws ParseException{
+    public void mainWithNoArgument() {
         mockStatic(Logger.class);
         StringReceiver.main(null);
         verifyStatic();
     }
 
-    @Test(expected = ParseException.class)
+    @Test
     public void mainSimpleString() throws ParseException {
         mockStatic(Logger.class);
         mockStatic(StringValidator.class);
@@ -40,8 +45,8 @@ public class StringReceiverTest {
         verifyStatic();
     }
 
-    @Test(expected = NullPointerException.class)
-    public void mainNullString() throws ParseException {
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void mainNullString() {
         mockStatic(Logger.class);
         StringReceiver.main(new String[]{});
         verifyStatic();
