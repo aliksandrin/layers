@@ -11,8 +11,13 @@ import java.util.Locale;
 
 public class StringValidator {
     private static final Logger logger = LoggerFactory.getLogger(StringValidator.class);
+    private WeekDay weekDay;
 
-    public static String validate(String dateString) throws ParseException {
+    public void setWeekDay(WeekDay weekDay) {
+        this.weekDay = weekDay;
+    }
+
+    public String validate(String dateString) throws ParseException {
         String format = "dd.MM.yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         simpleDateFormat.setLenient(false);
@@ -26,7 +31,7 @@ public class StringValidator {
 
         logger.info("Your date is valid, please wait...");
 
-        String dayOfWeek = WeekDay.get(date);
+        String dayOfWeek = weekDay.get(date);
 
         return dayOfWeek;
     }
