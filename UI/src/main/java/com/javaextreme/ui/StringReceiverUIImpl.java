@@ -1,14 +1,14 @@
 package com.javaextreme.ui;
 
-import com.javaextreme.service.StringValidator;
+import com.javaextreme.service.StringValidatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 
-public class StringReceiver {
-    private static final Logger logger = LoggerFactory.getLogger(StringReceiver.class);
-    private static StringValidator stringValidator;
+public class StringReceiverUIImpl implements StringReceiverUI{
+    private static final Logger logger = LoggerFactory.getLogger(StringReceiverUIImpl.class);
+    private StringValidatorService stringValidator;
 
     public void receive(String[] args) {
         // there dd.MM.yyyy must be
@@ -30,7 +30,7 @@ public class StringReceiver {
         }
     }
 
-    public void setStringValidator(StringValidator stringValidator) {
-        StringReceiver.stringValidator = stringValidator;
+    public void setStringValidator(StringValidatorService stringValidator) {
+        this.stringValidator = stringValidator;
     }
 }

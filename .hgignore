@@ -6,6 +6,9 @@ syntax: regexp
 .gitignore
 .log
 .iml
+.MF
 /target/
 /out/
 out/
+/META-INF/
+.MF

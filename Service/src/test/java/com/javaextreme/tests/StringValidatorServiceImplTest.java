@@ -1,8 +1,8 @@
 package com.javaextreme.tests;
 
 import categories.JunitTests;
-import com.javaextreme.dao.WeekDay;
-import com.javaextreme.service.StringValidator;
+import com.javaextreme.dao.StringDAOImpl;
+import com.javaextreme.service.StringValidatorServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,14 +19,14 @@ import static org.mockito.Mockito.*;
 
 @Category(JunitTests.class)
 @RunWith(Parameterized.class)
-public class StringValidatorTest {
-    private StringValidator stringValidator;
+public class StringValidatorServiceImplTest {
+    private StringValidatorServiceImpl stringValidator;
     private String day;
     private Date date;
     private String dateString;
-    private WeekDay weekDay;
+    private StringDAOImpl stringDAOImpl;
 
-    public StringValidatorTest(String day, Date date, String dateString) {
+    public StringValidatorServiceImplTest(String day, Date date, String dateString) {
         this.day = day;
         this.date = date;
         this.dateString = dateString;
@@ -34,9 +34,9 @@ public class StringValidatorTest {
 
     @Before
     public void setUp() {
-        weekDay = mock(WeekDay.class);
-        stringValidator = new StringValidator();
-        stringValidator.setWeekDay(weekDay);
+        stringDAOImpl = mock(StringDAOImpl.class);
+        stringValidator = new StringValidatorServiceImpl();
+        stringValidator.setStringDAOImpl(stringDAOImpl);
     }
 
     @Parameterized.Parameters
@@ -54,14 +54,14 @@ public class StringValidatorTest {
 
     @Test
     public void validate() throws ParseException {
-        when(weekDay.get(date)).thenReturn(day);
+        when(stringDAOImpl.get(date)).thenReturn(day);
         Assert.assertEquals(day, stringValidator.validate(dateString));
-        verify(weekDay).get(date);
+        verify(stringDAOImpl).get(date);
     }
 
     @Test(expected = ParseException.class)
     public void validateNegative() throws ParseException{
         Assert.fail(stringValidator.validate("somestring"));
-        verifyZeroInteractions(weekDay);
+        verifyZeroInteractions(stringDAOImpl);
     }
 }

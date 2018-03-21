@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class WeekDay {
-    private static final Logger logger = LoggerFactory.getLogger(WeekDay.class);
+public class StringDAOImpl implements StringDAO{
+    private static final Logger logger = LoggerFactory.getLogger(StringDAOImpl.class);
 
     public String get(Date date) {
         logger.info("Discovering the week of the day...");

@@ -1,41 +1,26 @@
 package com.javaextreme.tests;
 
-import categories.IntegrationTest;
+import com.javaextreme.tests.categories.IntegrationTest;
+import com.javaextreme.ui.MainApplication;
 import org.hamcrest.CoreMatchers;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
 
 @Category(IntegrationTest.class)
 @RunWith(Parameterized.class)
-public class ITMainApplication {
-    private ByteArrayOutputStream output;
-    private String dataString;
+public class ITMainApplication extends OutputStreamTest{
+    private String dateString;
     private String day;
 
-    public ITMainApplication(String day, String dataString) {
-        this.dataString = dataString;
+    public ITMainApplication(String day, String dateString) {
         this.day = day;
-    }
-
-    @Before
-    public void setUp() {
-        output = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output));
-    }
-
-    @After
-    public void cleanUpStreams() {
-        System.setOut(null);
+        this.dateString = dateString;
     }
 
     @Parameterized.Parameters
@@ -53,7 +38,20 @@ public class ITMainApplication {
 
     @Test()
     public void main() {
-        String expected = "The day of the week for " + dataString + " date is " + day + ".";
+        String expected = "The day of the week for " + dateString + " date is " + day + ".";
+        MainApplication.main(new String[]{dateString});
         Assert.assertThat(output.toString(), CoreMatchers.containsString(expected));
+    }
+
+    @Test()
+    public void mainNull() {
+        MainApplication.main(new String[]{});
+        Assert.assertThat(output.toString(), CoreMatchers.containsString("You didn't enter a date. Please try again later ;)"));
+    }
+
+    @Test()
+    public void mainSomeString() {
+        MainApplication.main(new String[]{"some string"});
+        Assert.assertThat(output.toString(), CoreMatchers.containsString("Your string doesn't match required date format! Please try again later ;)"));
     }
 }

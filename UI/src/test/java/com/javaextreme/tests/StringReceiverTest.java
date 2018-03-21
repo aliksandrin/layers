@@ -1,10 +1,9 @@
 package com.javaextreme.tests;
 
-import categories.JunitTests;
-import com.javaextreme.service.StringValidator;
-import com.javaextreme.ui.StringReceiver;
+import com.javaextreme.tests.categories.JunitTests;
+import com.javaextreme.service.StringValidatorServiceImpl;
+import com.javaextreme.ui.StringReceiverUIImpl;
 import org.hamcrest.CoreMatchers;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +11,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -21,10 +19,9 @@ import static org.mockito.Mockito.*;
 
 @Category(JunitTests.class)
 @RunWith(Parameterized.class)
-public class StringReceiverTest {
-    private StringReceiver stringReceiver;
-    private ByteArrayOutputStream output;
-    private StringValidator stringValidator;
+public class StringReceiverTest extends OutputStreamTest{
+    private StringReceiverUIImpl stringReceiver;
+    private StringValidatorServiceImpl stringValidator;
     private String day;
     private String dateString;
 
@@ -35,10 +32,8 @@ public class StringReceiverTest {
 
     @Before
     public void setUp() {
-        output = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(output));
-        stringValidator = mock(StringValidator.class);
-        stringReceiver = new StringReceiver();
+        stringValidator = mock(StringValidatorServiceImpl.class);
+        stringReceiver = new StringReceiverUIImpl();
         stringReceiver.setStringValidator(stringValidator);
 
     }
@@ -56,22 +51,19 @@ public class StringReceiverTest {
         });
     }
 
-    @After
-    public void clear(){
-        System.setOut(null);
-    }
+
 
     @Test
-    public void main() throws Exception {
+    public void main() throws ParseException {
         when(stringValidator.validate(dateString)).thenReturn(day);
         stringReceiver.receive(new String[]{dateString});
         String expected = "The day of the week for " + dateString + " date is " + day + ".";
         Assert.assertThat(output.toString(), CoreMatchers.containsString(expected));
         verify(stringValidator).validate(dateString);
-        output.close();
     }
 
     @Test
+    // It works only one time, despite IDEA shows in the bottom
     public void mainNull() {
         stringReceiver.receive(new String[]{});
         Assert.assertThat(output.toString(), CoreMatchers.containsString("You didn't enter a date. Please try again later ;)"));

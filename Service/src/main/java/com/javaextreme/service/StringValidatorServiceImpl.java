@@ -1,6 +1,6 @@
 package com.javaextreme.service;
 
-import com.javaextreme.dao.WeekDay;
+import com.javaextreme.dao.StringDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,12 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StringValidator {
-    private static final Logger logger = LoggerFactory.getLogger(StringValidator.class);
-    private WeekDay weekDay;
+public class StringValidatorServiceImpl implements StringValidatorService{
+    private static final Logger logger = LoggerFactory.getLogger(StringValidatorServiceImpl.class);
+    private StringDAO stringDAO;
 
-    public void setWeekDay(WeekDay weekDay) {
-        this.weekDay = weekDay;
+    public void setStringDAOImpl(StringDAO stringDAO) {
+        this.stringDAO = stringDAO;
     }
 
     public String validate(String dateString) throws ParseException {
@@ -31,8 +31,6 @@ public class StringValidator {
 
         logger.info("Your date is valid, please wait...");
 
-        String dayOfWeek = weekDay.get(date);
-
-        return dayOfWeek;
+        return stringDAO.get(date);
     }
 }

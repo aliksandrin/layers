@@ -1,7 +1,7 @@
 package com.javaextreme.tests;
 
 import categories.JunitTests;
-import com.javaextreme.dao.WeekDay;
+import com.javaextreme.dao.StringDAOImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,12 +15,12 @@ import java.util.Date;
 
 @Category(JunitTests.class)
 @RunWith(Parameterized.class)
-public class WeekDayTest {
-    private WeekDay weekDay;
+public class StringDAOImplTest {
+    private StringDAOImpl stringDAOImpl;
     private String day;
     private Date date;
 
-    public WeekDayTest(String day, Date date) {
+    public StringDAOImplTest(String day, Date date) {
         this.day = day;
         this.date = date;
     }
@@ -40,12 +40,12 @@ public class WeekDayTest {
 
     @Before
     public void setUp() {
-        weekDay = new WeekDay();
+        stringDAOImpl = new StringDAOImpl();
     }
 
     @Test
     public void get(){
         //mockStatic(Logger.class);
-        Assert.assertEquals(day, weekDay.get(date));
+        Assert.assertEquals(day, stringDAOImpl.get(date));
     }
 }

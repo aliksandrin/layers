@@ -1,14 +1,14 @@
 package com.javaextreme.ui;
 
-import com.javaextreme.dao.WeekDay;
-import com.javaextreme.service.StringValidator;
+import com.javaextreme.dao.StringDAOImpl;
+import com.javaextreme.service.StringValidatorServiceImpl;
 
 public class MainApplication {
 
     public static void main(String[] args) {
-        StringReceiver stringReceiver = new StringReceiver();
-        StringValidator stringValidator = new StringValidator();
-        stringValidator.setWeekDay(new WeekDay());
+        StringReceiverUIImpl stringReceiver = new StringReceiverUIImpl();
+        StringValidatorServiceImpl stringValidator = new StringValidatorServiceImpl();
+        stringValidator.setStringDAOImpl(new StringDAOImpl());
         stringReceiver.setStringValidator(stringValidator);
 
         stringReceiver.receive(args);
