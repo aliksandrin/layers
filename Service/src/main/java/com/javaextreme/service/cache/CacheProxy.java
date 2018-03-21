@@ -3,13 +3,14 @@ package com.javaextreme.service.cache;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
-public class CacheProxy implements InvocationHandler {
-    private Object object;
+public class CacheProxy<T> implements InvocationHandler {
+    private T proxy;
     private Cache cache;
 
-    public CacheProxy(Object object, Cache cache) {
-        this.object = object;
+    public CacheProxy(T object, Cache cache) {
+        proxy = object;
         this.cache = cache;
     }
 
@@ -18,13 +19,20 @@ public class CacheProxy implements InvocationHandler {
         Object result = cache.cacheGet(args[0]);
         if (result == null) {
             try {
-                result = method.invoke(proxy, args);
+                result = method.invoke(this.proxy, args[0]);
+                cache.cachePut(args[0], result);
+                return result;
             } catch (IllegalAccessException e) {
             } catch (IllegalArgumentException e) {
             } catch (InvocationTargetException e) {
+
             }
-            cache.cachePut(result);
         }
         return result;
+    }
+
+    public <T> T getProxy(T t, Class<? super T> interfaceType, Cache cache) {
+        CacheProxy handler = new CacheProxy(proxy, cache);
+        return (T) Proxy.newProxyInstance(interfaceType.getClassLoader(), new Class<?>[]{interfaceType}, handler);
     }
 }

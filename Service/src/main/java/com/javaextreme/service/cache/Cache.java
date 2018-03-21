@@ -1,6 +1,6 @@
 package com.javaextreme.service.cache;
 
-public interface Cache {
-    Object cacheGet(Object obj);
-    void cachePut(Object obj);
+public interface Cache<K, V> {
+    Object cacheGet(K obj);
+    void cachePut(K obj, V o);
 }

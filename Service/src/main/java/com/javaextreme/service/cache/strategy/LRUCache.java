@@ -8,34 +8,38 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class LRUCache implements Cache {
+public class LRUCache<K, V> implements Cache<K, V> {
     private static final Logger logger = LoggerFactory.getLogger(CacheableProcessor.class);
 
-    private final Map<Object, Object> map = new LinkedHashMap<>();
-    private final Deque<Object> queue = new ArrayDeque<>();
-    private int maxsize;
+    private LinkedHashMapWithCapacity<K, V> map;
 
-    public LRUCache(int maxsize) {
-        this.maxsize = maxsize;
+    public LRUCache(int capacity) {
+        this.map = new LinkedHashMapWithCapacity<>(capacity);
     }
 
     @Override
-    public Object cacheGet(Object obj) {
-
-        if (map.containsKey(obj)) {
-            logger.info("We have {} in cache!", obj);
-            return map.get(obj);
-        }
-        return null;
+    public Object cacheGet(K obj) {
+        return map.get(obj);
     }
 
     @Override
-    public void cachePut(Object obj) {
-        if (map.size() == maxsize) {
-            Object o = queue.pollFirst();
-            map.remove(o);
-        }
-        queue.addLast(obj);
+    public void cachePut(K obj, V o) {
+        map.put(obj, o);
         logger.info("We'll put {} in cache!", obj);
+    }
+
+
+}
+
+class LinkedHashMapWithCapacity<K, V> extends LinkedHashMap<K, V> {
+    private int capacity;
+
+    public LinkedHashMapWithCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        return this.size() >= this.capacity;
     }
 }

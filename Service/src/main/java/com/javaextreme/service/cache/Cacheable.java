@@ -9,5 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface Cacheable {
     Class<? extends Cache> strategy();
+    Class targetClass();
+    String invocatedMethod();
 }
 

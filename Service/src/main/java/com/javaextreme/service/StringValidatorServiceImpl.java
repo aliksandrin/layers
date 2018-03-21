@@ -20,7 +20,7 @@ public class StringValidatorServiceImpl implements StringValidatorService{
     }
 
 
-    @Cacheable(strategy = LRUCache.class)
+    @Cacheable(strategy = LRUCache.class, targetClass = StringValidatorServiceImpl.class, invocatedMethod = "validate")
     public String validate(String dateString) throws ParseException {
         String format = "dd.MM.yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
