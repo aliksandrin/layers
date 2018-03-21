@@ -34,7 +34,7 @@ public class StringReceiverTest extends OutputStreamTest{
     public void setUp() {
         stringValidator = mock(StringValidatorServiceImpl.class);
         stringReceiver = new StringReceiverUIImpl();
-        stringReceiver.setStringValidator(stringValidator);
+        stringReceiver.setStringValidatorService(stringValidator);
 
     }
 

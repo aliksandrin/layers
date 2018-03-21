@@ -36,7 +36,7 @@ public class StringValidatorServiceImplTest {
     public void setUp() {
         stringDAOImpl = mock(StringDAOImpl.class);
         stringValidator = new StringValidatorServiceImpl();
-        stringValidator.setStringDAOImpl(stringDAOImpl);
+        stringValidator.setStringDAO(stringDAOImpl);
     }
 
     @Parameterized.Parameters

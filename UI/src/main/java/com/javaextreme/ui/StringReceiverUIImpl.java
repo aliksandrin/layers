@@ -30,7 +30,7 @@ public class StringReceiverUIImpl implements StringReceiverUI{
         }
     }
 
-    public void setStringValidator(StringValidatorService stringValidator) {
+    public void setStringValidatorService(StringValidatorService stringValidator) {
         this.stringValidator = stringValidator;
     }
 }
