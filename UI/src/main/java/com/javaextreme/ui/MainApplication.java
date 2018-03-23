@@ -1,6 +1,8 @@
 package com.javaextreme.ui;
 
-import com.javaextreme.cache.CacheToLRU;
+import com.javaextreme.cache.CacheFactory;
+import com.javaextreme.cache.strategy.LRUCache;
+import com.javaextreme.dao.StringDAO;
 import com.javaextreme.dao.StringDAOImpl;
 import com.javaextreme.service.StringValidatorService;
 import com.javaextreme.service.StringValidatorServiceImpl;
@@ -8,15 +10,17 @@ import com.javaextreme.service.StringValidatorServiceImpl;
 public class MainApplication {
 
     public static void main(String[] args) {
-        StringReceiverUIImpl stringReceiver = new StringReceiverUIImpl();
-        StringValidatorService stringValidator = new StringValidatorServiceImpl();
-        stringValidator.setStringDAO(new StringDAOImpl());
+        CacheFactory cacheFactory = new CacheFactory(new LRUCache(200));
+        StringReceiverUI stringReceiver =
+                (StringReceiverUI) cacheFactory.createCachedObject(new StringReceiverUIImpl());
+        StringValidatorService stringValidator =
+                (StringValidatorService) cacheFactory.createCachedObject(new StringValidatorServiceImpl());
+        StringDAO stringDAO =
+                (StringDAO) cacheFactory.createCachedObject(new StringDAOImpl());
+
+        stringValidator.setStringDAO(stringDAO);
         stringReceiver.setStringValidatorService(stringValidator);
 
-        //e.g. for creating cached object
-        CacheToLRU cacheToLRU = new CacheToLRU();
-//        StringValidatorService stVProxy = (StringValidatorService) cacheToLRU.cacheEnable(stringValidator);
-//        stringReceiver.setStringValidatorService(stVProxy);
         stringReceiver.receive(args);
     }
 }

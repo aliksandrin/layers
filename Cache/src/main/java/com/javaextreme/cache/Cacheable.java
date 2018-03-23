@@ -8,8 +8,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Cacheable {
-    Class<? extends Cache> strategy();
-    Class targetClass();
-    String invocatedMethod();
 }
 

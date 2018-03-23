@@ -2,14 +2,14 @@ package com.javaextreme.cache.strategy;
 
 
 import com.javaextreme.cache.Cache;
-import com.javaextreme.cache.CacheableProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LRUCache<K, V> implements Cache<K, V> {
-    private static final Logger logger = LoggerFactory.getLogger(CacheableProcessor.class);
+    private static final Logger logger = LoggerFactory.getLogger(LRUCache.class);
 
     private LinkedHashMapWithCapacity<K, V> map;
 
