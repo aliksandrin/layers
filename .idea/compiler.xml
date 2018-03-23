@@ -2,16 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true">
-        <processorPath>
+      <profile default="true" name="Default">
+        <processorPath useClasspath="false">
           <entry name="$PROJECT_DIR$/Service/src/main/java/com/javaextreme/service/cache/CacheableProcessor.java" />
         </processorPath>
       </profile>
-      <profile name="Annotation profile for layers" enabled="true">
+      <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processor name="javax.annotation.processing.Processor" />
         <module name="Cache" />
         <module name="DAO" />
         <module name="Service" />

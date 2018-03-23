@@ -75,20 +75,6 @@
     </dependencyManagement>
 
     <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-
-                <configuration>
-                    <annotationProcessors>
-                        <annotationProcessor>
-                            javax.annotation.processing.Processor
-                        </annotationProcessor>
-                    </annotationProcessors>
-                </configuration>
-            </plugin>
-        </plugins>
         <testResources>
             <testResource>
                 <directory>**/src/test/java</directory>

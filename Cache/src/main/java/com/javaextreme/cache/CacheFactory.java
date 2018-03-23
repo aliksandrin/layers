@@ -1,17 +1,19 @@
 package com.javaextreme.cache;
 
+import com.javaextreme.cache.strategy.Cache;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class CacheFactory {
     private Cache cache;
 
-    public Object createCachedObject(Object o){
+    public <T> T createCachedObject(T o) {
         Class cl = o.getClass();
-        Method[] methos = cl.getDeclaredMethods();
-        for ( Method method : methos){
-            if (method.isAnnotationPresent(Cacheable.class)){
-                return Proxy.newProxyInstance(cl.getClassLoader(), cl.getInterfaces(), new CacheProxy(o, cache));
+        Method[] methods = cl.getDeclaredMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(Cacheable.class)) {
+                 return (T) Proxy.newProxyInstance(cl.getClassLoader(), cl.getInterfaces(), new CacheProxy(o, cache));
             }
         }
         return o;

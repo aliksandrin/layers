@@ -1,7 +1,6 @@
 package com.javaextreme.service;
 
 import com.javaextreme.cache.Cacheable;
-import com.javaextreme.cache.strategy.LRUCache;
 import com.javaextreme.dao.StringDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,7 @@ public class StringValidatorServiceImpl implements StringValidatorService {
     }
 
 
-    @Cacheable(strategy = LRUCache.class, targetClass = StringValidatorServiceImpl.class, invocatedMethod = "validate")
+    @Cacheable
     public String validate(String dateString) throws ParseException {
         String format = "dd.MM.yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.ENGLISH);

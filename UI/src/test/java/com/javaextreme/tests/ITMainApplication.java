@@ -14,7 +14,7 @@ import java.util.Collection;
 
 @Category(IntegrationTest.class)
 @RunWith(Parameterized.class)
-public class ITMainApplication extends OutputStreamTest{
+public class ITMainApplication extends OutputStreamTest {
     private String dateString;
     private String day;
 
