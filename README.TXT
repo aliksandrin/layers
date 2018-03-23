@@ -15,6 +15,9 @@ RELEASED:
 - Test Categories
 - Maven profiles for on/off tests
 
-FIX:
-- lo4j.properties now log4j.xml
-- usage <dependency-management>
+
+Lesson 3
+- Created annotation @Cacheable (without any processors;) )
+- Created Proxy for classes with @Cacheable methods
+- Created Cachefactory
+- covered with tests
