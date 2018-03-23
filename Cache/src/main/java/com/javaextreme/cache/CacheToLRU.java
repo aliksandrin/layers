@@ -1,6 +1,6 @@
-package com.javaextreme.service.cache;
+package com.javaextreme.cache;
 
-import com.javaextreme.service.cache.strategy.LRUCache;
+import com.javaextreme.cache.strategy.LRUCache;
 
 import java.lang.reflect.Proxy;
 

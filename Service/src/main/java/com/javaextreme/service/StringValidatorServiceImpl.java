@@ -1,8 +1,8 @@
 package com.javaextreme.service;
 
+import com.javaextreme.cache.Cacheable;
+import com.javaextreme.cache.strategy.LRUCache;
 import com.javaextreme.dao.StringDAO;
-import com.javaextreme.service.cache.Cacheable;
-import com.javaextreme.service.cache.strategy.LRUCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StringValidatorServiceImpl implements StringValidatorService{
+public class StringValidatorServiceImpl implements StringValidatorService {
     private static final Logger logger = LoggerFactory.getLogger(StringValidatorServiceImpl.class);
     private StringDAO stringDAO;
 
@@ -25,14 +25,7 @@ public class StringValidatorServiceImpl implements StringValidatorService{
         String format = "dd.MM.yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
         simpleDateFormat.setLenient(false);
-
-        Date date;
-        try {
-            date = simpleDateFormat.parse(dateString);
-        } catch (ParseException e) {
-            throw new ParseException("Your string doesn't match required date format! Please try again later ;)", 1);
-        }
-
+        Date date = simpleDateFormat.parse(dateString);
         logger.info("Your date is valid, please wait...");
 
         return stringDAO.get(date);

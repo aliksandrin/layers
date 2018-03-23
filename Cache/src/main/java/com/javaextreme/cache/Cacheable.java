@@ -1,4 +1,4 @@
-package com.javaextreme.service.cache;
+package com.javaextreme.cache;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

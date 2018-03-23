@@ -12,6 +12,12 @@
     <artifactId>UI</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.javaextreme</groupId>
+            <artifactId>Cache</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.javaextreme</groupId>
             <artifactId>Service</artifactId>
@@ -31,8 +37,6 @@
         </dependency>
 
     </dependencies>
-
-
 
 
 </project>

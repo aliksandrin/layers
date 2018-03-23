@@ -1,4 +1,4 @@
-package com.javaextreme.service.cache;
+package com.javaextreme.cache;
 
 
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 
-@SupportedAnnotationTypes("com.javaextreme.service.cache.Cacheable")
+@SupportedAnnotationTypes("com.javaextreme.cache.Cacheable")
 public class CacheableProcessor extends AbstractProcessor {
     private static final Logger logger = LoggerFactory.getLogger(CacheableProcessor.class);
 
@@ -38,5 +38,8 @@ public class CacheableProcessor extends AbstractProcessor {
 
         }
         return true;
+    }
+
+    public CacheableProcessor() {
     }
 }

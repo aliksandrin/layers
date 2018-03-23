@@ -26,7 +26,7 @@ public class StringReceiverUIImpl implements StringReceiverUI{
             result = stringValidator.validate(dateString);
             logger.info("The day of the week for {} date is {}.", dateString, result);
         } catch (ParseException e) {
-            logger.error(e.getMessage());
+            logger.error("Your string doesn't match required date format! Please try again later ;)", 1);
         }
     }
 

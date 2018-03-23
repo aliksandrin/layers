@@ -1,9 +1,9 @@
-package com.javaextreme.service.cache;
+package com.javaextreme.cache;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.text.ParseException;
 
 public class CacheProxy<T> implements InvocationHandler {
     private T proxy;
@@ -15,18 +15,11 @@ public class CacheProxy<T> implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) {
+    public Object invoke(Object proxy, Method method, Object[] args) throws ParseException, Exception {
         Object result = cache.cacheGet(args[0]);
         if (result == null) {
-            try {
-                result = method.invoke(this.proxy, args[0]);
-                cache.cachePut(args[0], result);
-                return result;
-            } catch (IllegalAccessException e) {
-            } catch (IllegalArgumentException e) {
-            } catch (InvocationTargetException e) {
-
-            }
+            result = method.invoke(this.proxy, args[0]);
+            cache.cachePut(args[0], result);
         }
         return result;
     }

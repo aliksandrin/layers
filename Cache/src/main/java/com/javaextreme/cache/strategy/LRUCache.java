@@ -1,8 +1,8 @@
-package com.javaextreme.service.cache.strategy;
+package com.javaextreme.cache.strategy;
 
 
-import com.javaextreme.service.cache.Cache;
-import com.javaextreme.service.cache.CacheableProcessor;
+import com.javaextreme.cache.Cache;
+import com.javaextreme.cache.CacheableProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,17 +29,16 @@ public class LRUCache<K, V> implements Cache<K, V> {
     }
 
 
-}
+    class LinkedHashMapWithCapacity<K, V> extends LinkedHashMap<K, V> {
+        private int capacity;
 
-class LinkedHashMapWithCapacity<K, V> extends LinkedHashMap<K, V> {
-    private int capacity;
+        public LinkedHashMapWithCapacity(int capacity) {
+            this.capacity = capacity;
+        }
 
-    public LinkedHashMapWithCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    @Override
-    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        return this.size() >= this.capacity;
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+            return this.size() >= this.capacity;
+        }
     }
 }
