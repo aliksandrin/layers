@@ -1,18 +1,15 @@
 package com.javaextreme.tests;
 
-import com.javaextreme.tests.categories.IntegrationTest;
 import com.javaextreme.ui.MainApplication;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-@Category(IntegrationTest.class)
 @RunWith(Parameterized.class)
 public class ITMainApplication extends OutputStreamTest {
     private String dateString;

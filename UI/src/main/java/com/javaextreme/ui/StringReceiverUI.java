@@ -4,5 +4,6 @@ import com.javaextreme.service.StringValidatorService;
 
 public interface StringReceiverUI {
     void receive(String[] args);
-    void setStringValidatorService(StringValidatorService stringValidator);
+    void setStringValidatorService(StringValidatorService stringValidatorService);
+    StringValidatorService getStringValidator();
 }

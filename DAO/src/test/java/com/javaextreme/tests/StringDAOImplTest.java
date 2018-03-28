@@ -1,22 +1,21 @@
 package com.javaextreme.tests;
 
-import categories.JunitTests;
+import com.javaextreme.dao.StringDAO;
 import com.javaextreme.dao.StringDAOImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
-@Category(JunitTests.class)
 @RunWith(Parameterized.class)
 public class StringDAOImplTest {
-    private StringDAOImpl stringDAOImpl;
+    private StringDAO stringDAO;
     private String day;
     private Date date;
 
@@ -28,24 +27,23 @@ public class StringDAOImplTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"monday", new Date(2018 - 1900, 2, 12)},
-                {"tuesday", new Date(2018 - 1900, 2, 13)},
-                {"wednesday", new Date(2018 - 1900, 2, 14)},
-                {"thursday", new Date(2018 - 1900, 2, 15)},
-                {"friday", new Date(2018 - 1900, 2, 16)},
-                {"saturday", new Date(2018 - 1900, 2, 17)},
-                {"sunday", new Date(2018 - 1900, 2, 18)},
+                {"monday", new GregorianCalendar(2018, 2, 12).getTime()},
+                {"tuesday", new GregorianCalendar(2018, 2, 13).getTime()},
+                {"wednesday", new GregorianCalendar(2018, 2, 14).getTime()},
+                {"thursday", new GregorianCalendar(2018, 2, 15).getTime()},
+                {"friday", new GregorianCalendar(2018, 2, 16).getTime()},
+                {"saturday", new GregorianCalendar(2018, 2, 17).getTime()},
+                {"sunday", new GregorianCalendar(2018, 2, 18).getTime()},
         });
     }
 
     @Before
     public void setUp() {
-        stringDAOImpl = new StringDAOImpl();
+        stringDAO = new StringDAOImpl();
     }
 
     @Test
     public void get(){
-        //mockStatic(Logger.class);
-        Assert.assertEquals(day, stringDAOImpl.get(date));
+        Assert.assertEquals(day, stringDAO.get(date));
     }
 }

@@ -1,27 +1,19 @@
 package com.javaextreme.ui;
 
-import com.javaextreme.cache.CacheFactory;
-import com.javaextreme.cache.strategy.impl.LRUCache;
-import com.javaextreme.dao.StringDAO;
-import com.javaextreme.dao.StringDAOImpl;
-import com.javaextreme.service.StringValidatorService;
-import com.javaextreme.service.StringValidatorServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainApplication {
+    private static final Logger logger = LoggerFactory.getLogger(MainApplication.class);
 
     public static void main(String[] args) {
-        CacheFactory cacheFactory = new CacheFactory(new LRUCache(200));
-        // возможно потом можно будет отойти от такого объявления к какой нибудь AbstractFactory
-        StringReceiverUI stringReceiver =
-                cacheFactory.createCachedObject(new StringReceiverUIImpl());
-        StringValidatorService stringValidator =
-                cacheFactory.createCachedObject(new StringValidatorServiceImpl());
-        StringDAO stringDAO =
-                cacheFactory.createCachedObject(new StringDAOImpl());
 
-        stringValidator.setStringDAO(stringDAO);
-        stringReceiver.setStringValidatorService(stringValidator);
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+        logger.info("Spring context initialized.");
 
+        StringReceiverUI stringReceiver = context.getBean(StringReceiverUI.class);
         stringReceiver.receive(args);
     }
 }

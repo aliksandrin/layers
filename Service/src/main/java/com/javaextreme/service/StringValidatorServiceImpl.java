@@ -18,6 +18,9 @@ public class StringValidatorServiceImpl implements StringValidatorService {
         this.stringDAO = stringDAO;
     }
 
+    public StringDAO getStringDAO() {
+        return stringDAO;
+    }
 
     @Cacheable
     public String validate(String dateString) throws ParseException {

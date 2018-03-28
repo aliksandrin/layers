@@ -9,32 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Service</artifactId>
+    <artifactId>CustomDAO</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.javaextreme</groupId>
-            <artifactId>Cache</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.javaextreme</groupId>
             <artifactId>DAO</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.javaextreme</groupId>
-            <artifactId>CustomDAO</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>

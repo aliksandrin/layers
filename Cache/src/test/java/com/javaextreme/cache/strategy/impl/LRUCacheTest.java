@@ -1,21 +1,18 @@
 package com.javaextreme.cache.strategy.impl;
 
-import com.javaextreme.cache.categories.JunitTests;
 import com.javaextreme.cache.strategy.Cache;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 
-@Category(JunitTests.class)
 public class LRUCacheTest {
     private Cache cache;
     private String day = "monday";
     private String dateString = "12.03.2018";
 
     @Before
-    public void in(){
+    public void in() {
         cache = new LRUCache(3);
     }
 
@@ -43,7 +40,7 @@ public class LRUCacheTest {
     }
 
     @After
-    public void after(){
+    public void after() {
         cache.reset();
     }
 }

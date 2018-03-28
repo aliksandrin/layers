@@ -8,7 +8,7 @@ import java.text.ParseException;
 
 public class StringReceiverUIImpl implements StringReceiverUI{
     private static final Logger logger = LoggerFactory.getLogger(StringReceiverUIImpl.class);
-    private StringValidatorService stringValidator;
+    private StringValidatorService stringValidatorService;
 
     public void receive(String[] args) {
         // there dd.MM.yyyy must be
@@ -23,14 +23,18 @@ public class StringReceiverUIImpl implements StringReceiverUI{
         try {
             dateString = args[0];
             logger.info("Validation started...");
-            result = stringValidator.validate(dateString);
+            result = stringValidatorService.validate(dateString);
             logger.info("The day of the week for {} date is {}.", dateString, result);
         } catch (ParseException e) {
             logger.error("Your string doesn't match required date format! Please try again later ;)", 1);
         }
     }
 
-    public void setStringValidatorService(StringValidatorService stringValidator) {
-        this.stringValidator = stringValidator;
+    public void setStringValidatorService(StringValidatorService stringValidatorService) {
+        this.stringValidatorService = stringValidatorService;
+    }
+
+    public StringValidatorService getStringValidator() {
+        return stringValidatorService;
     }
 }

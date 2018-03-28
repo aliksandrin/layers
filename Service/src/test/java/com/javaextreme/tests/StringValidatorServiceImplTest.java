@@ -1,12 +1,12 @@
 package com.javaextreme.tests;
 
-import categories.JunitTests;
 import com.javaextreme.dao.StringDAOImpl;
 import com.javaextreme.service.StringValidatorServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -14,12 +14,14 @@ import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.mockito.Mockito.*;
 
-@Category(JunitTests.class)
 @RunWith(Parameterized.class)
 public class StringValidatorServiceImplTest {
+    @Rule
+    public ExpectedException thrown= ExpectedException.none();
     private StringValidatorServiceImpl stringValidator;
     private String day;
     private Date date;
@@ -42,13 +44,13 @@ public class StringValidatorServiceImplTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"monday", new Date(2018 - 1900, 2, 12), "12.03.2018"},
-                {"tuesday", new Date(2018 - 1900, 2, 13), "13.03.2018"},
-                {"wednesday", new Date(2018 - 1900, 2, 14), "14.03.2018"},
-                {"thursday", new Date(2018 - 1900, 2, 15), "15.03.2018"},
-                {"friday", new Date(2018 - 1900, 2, 16), "16.03.2018"},
-                {"saturday", new Date(2018 - 1900, 2, 17), "17.03.2018"},
-                {"sunday", new Date(2018 - 1900, 2, 18), "18.03.2018"}
+                {"monday", new GregorianCalendar(2018, 2, 12).getTime(), "12.03.2018"},
+                {"tuesday", new GregorianCalendar(2018, 2, 13).getTime(), "13.03.2018"},
+                {"wednesday", new GregorianCalendar(2018 , 2, 14).getTime(), "14.03.2018"},
+                {"thursday", new GregorianCalendar(2018, 2, 15).getTime(), "15.03.2018"},
+                {"friday", new GregorianCalendar(2018, 2, 16).getTime(), "16.03.2018"},
+                {"saturday", new GregorianCalendar(2018, 2, 17).getTime(), "17.03.2018"},
+                {"sunday", new GregorianCalendar(2018, 2, 18).getTime(), "18.03.2018"}
         });
     }
 
@@ -59,8 +61,9 @@ public class StringValidatorServiceImplTest {
         verify(stringDAOImpl).get(date);
     }
 
-    @Test(expected = ParseException.class)
+    @Test
     public void validateNegative() throws ParseException{
+        thrown.expect(ParseException.class);
         Assert.fail(stringValidator.validate("somestring"));
         verifyZeroInteractions(stringDAOImpl);
     }

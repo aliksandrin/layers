@@ -7,4 +7,5 @@ import java.text.ParseException;
 public interface StringValidatorService {
     void setStringDAO(StringDAO stringDAO);
     String validate(String line) throws ParseException;
+    StringDAO getStringDAO();
 }

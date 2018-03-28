@@ -1,25 +1,26 @@
 package com.javaextreme.tests;
 
-import com.javaextreme.tests.categories.JunitTests;
 import com.javaextreme.service.StringValidatorServiceImpl;
 import com.javaextreme.ui.StringReceiverUIImpl;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.InjectMocks;
 
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@Category(JunitTests.class)
 @RunWith(Parameterized.class)
 public class StringReceiverTest extends OutputStreamTest{
+    @InjectMocks
     private StringReceiverUIImpl stringReceiver;
     private StringValidatorServiceImpl stringValidator;
     private String day;
@@ -63,7 +64,6 @@ public class StringReceiverTest extends OutputStreamTest{
     }
 
     @Test
-    // It works only one time, despite IDEA shows in the bottom
     public void mainNull() {
         stringReceiver.receive(new String[]{});
         Assert.assertThat(output.toString(), CoreMatchers.containsString("You didn't enter a date. Please try again later ;)"));
