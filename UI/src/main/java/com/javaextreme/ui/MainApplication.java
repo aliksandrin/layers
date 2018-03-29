@@ -10,7 +10,7 @@ public class MainApplication {
 
     public static void main(String[] args) {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/application-context.xml");
         logger.info("Spring context initialized.");
 
         StringReceiverUI stringReceiver = context.getBean(StringReceiverUI.class);

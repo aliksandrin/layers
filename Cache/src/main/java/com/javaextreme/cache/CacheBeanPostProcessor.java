@@ -18,7 +18,7 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        getCacheProperties();
+        setupCacheProperties();
 
         Class cl = bean.getClass();
         if (isAnnotationPresent(cl)) {
@@ -47,7 +47,7 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
         return bean;
     }
 
-    private void getCacheProperties() {
+    private void setupCacheProperties() {
         Properties property = new Properties();
         try (InputStream fis = this.getClass().getClassLoader().getResourceAsStream("cache.properties")) {
             property.load(fis);
