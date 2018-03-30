@@ -9,18 +9,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
 public class CacheBeanPostProcessorTest {
     @InjectMocks
-    private CacheBeanPostProcessor cacheBeanPostProcessor;
-    private CacheableInterfaceForTest mocked;
+    private CacheBeanPostProcessor cacheBeanPostProcessor = new CacheBeanPostProcessor();
+    private CacheableInterfaceForTest testClass;
     @Mock
-    LRUCache cacheMock;
+    private LRUCache cacheMock = new LRUCache(10);
 
     @Before
-    public void setUp() throws Exception {
-        mocked = new CacheableClassForTest();
-        cacheBeanPostProcessor = new CacheBeanPostProcessor();
+    public void setUp() {
+        testClass = new CacheableClassForTest();
     }
 
     @Test
@@ -33,12 +36,47 @@ public class CacheBeanPostProcessorTest {
     @Test
     public void postProcessBeforeInitializationTrueProxy() throws Exception {
         CacheableInterfaceForTest cacheableInterfaceForTest
-                = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(mocked, "Mocked");
+                = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(testClass, "Mocked");
         Assert.assertEquals(true, cacheableInterfaceForTest.getClass().toString().contains("Proxy"));
     }
 
     @Test
+    public void cachePutInvocated() throws Exception {
+        CacheableInterfaceForTest cacheableInterfaceForTest
+                = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(testClass, "Mocked");
+        cacheableInterfaceForTest.doSometh("some");
+        verify(cacheMock).cachePut(new String[]{"some"}, 4);
+    }
+
+    @Test
+    public void cacheGetInvocated() throws Exception {
+        CacheableInterfaceForTest cacheableInterfaceForTest
+                = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(testClass, "Mocked");
+        when(cacheMock.cacheGet(new String[]{"some"})).thenReturn(4);
+        cacheableInterfaceForTest.doSometh("some");
+        verify(cacheMock).cacheGet(new String[]{"some"});
+        verify(cacheMock, never()).cachePut(new String[]{"some"}, 4);
+    }
+
+
+    @Test
     public void postProcessAfterInitialization() {
-        Assert.assertEquals(mocked, cacheBeanPostProcessor.postProcessAfterInitialization(mocked, "Mocked"));
+        Assert.assertEquals(testClass, cacheBeanPostProcessor.postProcessAfterInitialization(testClass, "Mocked"));
+    }
+
+
+    /*
+    Test classes below
+     */
+
+    public interface CacheableInterfaceForTest {
+        @Cacheable
+        int doSometh(String string);
+    }
+
+    public class CacheableClassForTest  implements CacheableInterfaceForTest {
+        public int doSometh(String string){
+            return string.length();
+        }
     }
 }

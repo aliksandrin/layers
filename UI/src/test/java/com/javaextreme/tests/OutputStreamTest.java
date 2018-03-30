@@ -7,16 +7,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public abstract class OutputStreamTest {
-    protected final static ByteArrayOutputStream output = new ByteArrayOutputStream();
+    protected static final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private static PrintStream original;
 
     @BeforeClass
     public static void setUpBeforeAll() {
-        System.setOut(new PrintStream(output, true));
+        original = System.out;
+        System.setOut(new PrintStream(output));
 
     }
 
     @After
     public void clear() {
-        System.setOut(null);
+        System.setOut(original);
     }
 }

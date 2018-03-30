@@ -1,7 +1,7 @@
 package com.javaextreme.tests;
 
-import com.javaextreme.dao.StringDAO;
-import com.javaextreme.dao.StringDAOImpl;
+import com.javaextreme.dao.DAO;
+import com.javaextreme.dao.DAOImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,12 +14,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 @RunWith(Parameterized.class)
-public class StringDAOImplTest {
-    private StringDAO stringDAO;
+public class DAOImplTest {
+    private DAO DAO;
     private String day;
     private Date date;
 
-    public StringDAOImplTest(String day, Date date) {
+    public DAOImplTest(String day, Date date) {
         this.day = day;
         this.date = date;
     }
@@ -39,11 +39,11 @@ public class StringDAOImplTest {
 
     @Before
     public void setUp() {
-        stringDAO = new StringDAOImpl();
+        DAO = new DAOImpl();
     }
 
     @Test
     public void get(){
-        Assert.assertEquals(day, stringDAO.get(date));
+        Assert.assertEquals(day, DAO.get(date));
     }
 }

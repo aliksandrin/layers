@@ -1,35 +1,24 @@
 package com.javaextreme.tests;
 
-import com.javaextreme.ui.StringReceiverUI;
-import com.javaextreme.ui.StringReceiverUIImpl;
+import com.javaextreme.ui.MainApplication;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class ITMainApplication extends OutputStreamTest {
-    private ApplicationContext applicationContext;
-    private StringReceiverUI stringReceiverUI;
+
     private String dateString;
     private String day;
 
     public ITMainApplication(String day, String dateString) {
         this.day = day;
         this.dateString = dateString;
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        applicationContext = new ClassPathXmlApplicationContext("/spring/test-application-context.xml");
-        stringReceiverUI = applicationContext.getBean(StringReceiverUIImpl.class);
     }
 
     @Parameterized.Parameters
@@ -48,19 +37,33 @@ public class ITMainApplication extends OutputStreamTest {
     @Test()
     public void main() {
         String expected = "The day of the week for " + dateString + " date is " + day + ".";
-        stringReceiverUI.receive(new String[]{dateString});
-        Assert.assertThat(output.toString(), CoreMatchers.containsString(expected));
+        MainApplication.main(new String[]{dateString});
+        String result = output.toString();
+        Assert.assertThat(result, CoreMatchers.containsString(expected));
     }
 
     @Test()
     public void mainNull() {
-        stringReceiverUI.receive(new String[]{});
-        Assert.assertThat(output.toString(), CoreMatchers.containsString("You didn't enter a date. Please try again later ;)"));
+        String expected = "You didn't enter a date. Please try again later ;)";
+        MainApplication.main(new String[]{});
+        String result = output.toString();
+        Assert.assertThat(result, CoreMatchers.containsString(expected));
     }
 
     @Test()
     public void mainSomeString() {
-        stringReceiverUI.receive(new String[]{"some string"});
-        Assert.assertThat(output.toString(), CoreMatchers.containsString("Your string doesn't match required date format! Please try again later ;)"));
+        String expected = "Your string doesn't match required date format! Please try again later ;)";
+        MainApplication.main(new String[]{"some string"});
+        String result = output.toString();
+        Assert.assertThat(result, CoreMatchers.containsString(expected));
+    }
+
+    @Test()
+    public void mainWithCache() {
+        String expected = "The day of the week for " + dateString + " date is " + day + ".";
+        MainApplication.main(new String[]{dateString});
+        String result = output.toString();
+        Assert.assertThat(result, CoreMatchers.containsString(expected));
+        Assert.assertThat(result, CoreMatchers.containsString("We'll put [" + dateString + "] in cache!"));
     }
 }

@@ -4,6 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-      <bean class="com.javaextreme.cache.CacheBeanPostProcessor"/>
+    <bean class="com.javaextreme.cache.CacheBeanPostProcessor" autowire="byType"/>
+
+    <bean class="com.javaextreme.cache.strategy.impl.LRUCache">
+        <constructor-arg name="capacity" value="200"/>
+    </bean>
 
 </beans>

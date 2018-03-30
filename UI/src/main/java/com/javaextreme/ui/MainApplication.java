@@ -13,7 +13,13 @@ public class MainApplication {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring/application-context.xml");
         logger.info("Spring context initialized.");
 
-        StringReceiverUI stringReceiver = context.getBean(StringReceiverUI.class);
-        stringReceiver.receive(args);
+
+        if (args.length == 0) {
+            logger.error("You didn't enter a date. Please try again later ;)");
+            return;
+        }
+
+        UI ui = context.getBean(UI.class);
+        ui.showDayOfWeek(args[0]);
     }
 }

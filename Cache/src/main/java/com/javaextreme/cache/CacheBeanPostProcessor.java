@@ -6,10 +6,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
-import java.io.InputStream;
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.text.ParseException;
-import java.util.Properties;
 
 
 public class CacheBeanPostProcessor implements BeanPostProcessor {
@@ -18,8 +19,6 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        setupCacheProperties();
-
         Class cl = bean.getClass();
         if (isAnnotationPresent(cl)) {
             return Proxy.newProxyInstance(cl.getClassLoader(), cl.getInterfaces(), new InvocationHandler() {
@@ -31,12 +30,10 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
                         try {
                             result = method.invoke(bean, args);
                             cache.cachePut(args, result);
-                        }
-                        catch (IllegalAccessException | InvocationTargetException e){
+                        } catch (IllegalAccessException | InvocationTargetException e) {
                             throw new ParseException("", 1);
                         }
-                    }
-                    else {
+                    } else {
                         logger.info("We have cached result {} for {}", result, args);
                     }
 
@@ -45,22 +42,6 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
             });
         }
         return bean;
-    }
-
-    private void setupCacheProperties() {
-        Properties property = new Properties();
-        try (InputStream fis = this.getClass().getClassLoader().getResourceAsStream("cache.properties")) {
-            property.load(fis);
-
-            String strategy = property.getProperty("strategy");
-            int capacity = Integer.parseInt(property.getProperty("capacity"));
-            Class<?> cla = Class.forName("com.javaextreme.cache.strategy.impl."+ strategy);
-            Constructor<?> constructor = cla.getConstructor(int.class);
-            cache = (Cache) constructor.newInstance(new Object[]{capacity});
-        }
-        catch (Exception e){
-            logger.error("Please check your cache properties file");
-        }
     }
 
     private boolean isAnnotationPresent(Class c) {
@@ -73,12 +54,28 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
         }
         Class parent = cl.getSuperclass();
         if (parent != null)
-        isAnnotationPresent(parent);
+            if (isAnnotationPresent(parent))
+                return true;
+        Class[] interfaces = cl.getInterfaces();
+        if (interfaces.length != 0) {
+            for (Class interfac : interfaces) {
+                if (isAnnotationPresent(interfac))
+                    return true;
+            }
+        }
         return false;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return bean;
+    }
+
+    public Cache getCache() {
+        return cache;
+    }
+
+    public void setCache(Cache cache) {
+        this.cache = cache;
     }
 }

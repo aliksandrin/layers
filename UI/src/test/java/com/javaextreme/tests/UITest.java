@@ -1,43 +1,41 @@
 package com.javaextreme.tests;
 
-import com.javaextreme.service.StringValidatorService;
-import com.javaextreme.service.StringValidatorServiceImpl;
-import com.javaextreme.ui.StringReceiverUI;
-import com.javaextreme.ui.StringReceiverUIImpl;
+import com.javaextreme.service.Service;
+import com.javaextreme.service.ServiceImpl;
+import com.javaextreme.ui.UI;
+import com.javaextreme.ui.UIImpl;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.InjectMocks;
 
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(Parameterized.class)
-public class StringReceiverTest extends OutputStreamTest{
-    @InjectMocks
-    private StringReceiverUI stringReceiverUI;
-    private StringValidatorService stringValidatorService;
+public class UITest extends OutputStreamTest{
+    private UI ui;
+    private Service service;
     private String day;
     private String dateString;
 
-    public StringReceiverTest(String day, String dateString) {
+    public UITest(String day, String dateString) {
         this.day = day;
         this.dateString = dateString;
     }
 
     @Before
-    public void setUp() throws Exception{
-        stringValidatorService = mock(StringValidatorServiceImpl.class);
-        stringReceiverUI = new StringReceiverUIImpl();
-        stringReceiverUI.setStringValidatorService(stringValidatorService);
+    public void setUp() {
+        service = mock(ServiceImpl.class);
+        ui = new UIImpl();
+        ui.setService(service);
 
     }
 
@@ -58,16 +56,19 @@ public class StringReceiverTest extends OutputStreamTest{
 
     @Test
     public void main() throws ParseException {
-        when(stringValidatorService.validate(dateString)).thenReturn(day);
-        stringReceiverUI.receive(new String[]{dateString});
+        when(service.getDayOfWeek(dateString)).thenReturn(day);
+        ui.showDayOfWeek(dateString);
         String expected = "The day of the week for " + dateString + " date is " + day + ".";
         Assert.assertThat(output.toString(), CoreMatchers.containsString(expected));
-        verify(stringValidatorService).validate(dateString);
+        verify(service).getDayOfWeek(dateString);
     }
 
     @Test
-    public void mainNull() {
-        stringReceiverUI.receive(new String[]{});
-        Assert.assertThat(output.toString(), CoreMatchers.containsString("You didn't enter a date. Please try again later ;)"));
+    public void mainNull() throws ParseException {
+        when(service.getDayOfWeek("some")).thenThrow(ParseException.class);
+        ui.showDayOfWeek("some");
+        Assert.assertThat(output.toString(),
+                CoreMatchers.containsString("Your string doesn't match required date"));
+        verify(service).getDayOfWeek("some");
     }
 }

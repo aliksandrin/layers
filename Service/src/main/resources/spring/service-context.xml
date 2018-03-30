@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="stringvalidatorservice" class="com.javaextreme.service.StringValidatorServiceImpl">
-        <property name="stringDAO" ref="stringdao"/>
+    <bean id="service" class="com.javaextreme.service.ServiceImpl"  autowire="byType">
     </bean>
 </beans>

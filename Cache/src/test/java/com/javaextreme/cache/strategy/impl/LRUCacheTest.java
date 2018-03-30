@@ -13,7 +13,7 @@ public class LRUCacheTest {
 
     @Before
     public void in() {
-        cache = new LRUCache(3);
+        cache = new LRUCache(4);
     }
 
     @Test
@@ -34,9 +34,25 @@ public class LRUCacheTest {
         Assert.assertEquals(day, cache.cachePut(dateString, day));
     }
 
+//    @Test
+//    public void cachePutMoreArgs() {
+//        cache.cachePut(new Object[]{"some", "string"}, day);
+//        Assert.assertEquals(day, cache.cachePut(new Object[]{"some", "string"}, day));
+//    }
+
     @Test
     public void cachePutNull() {
         Assert.assertEquals(null, cache.cachePut(null, null));
+    }
+
+    @Test
+    public void cacheOverCapacity() {
+        cache.cachePut(0, 0);
+        cache.cachePut(1, 1);
+        cache.cachePut(2, 2);
+        Assert.assertEquals(0, cache.cacheGet(0));
+        cache.cachePut(3, 3);
+        Assert.assertEquals(null, cache.cacheGet(0));
     }
 
     @After

@@ -12,12 +12,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 @RunWith(Parameterized.class)
-public class CustomStringDAOTest  {
-    private StringDAO stringDAO;
+public class CustomDAOTest {
+    private DAO DAO;
     private String day;
     private Date date;
 
-    public CustomStringDAOTest(String day, Date date) {
+    public CustomDAOTest(String day, Date date) {
         this.day = day;
         this.date = date;
     }
@@ -37,11 +37,11 @@ public class CustomStringDAOTest  {
 
     @Before
     public void setUp() {
-        stringDAO = new CustomStringDAO();
+        DAO = new CustomDAO();
     }
 
     @Test
     public void get(){
-        Assert.assertEquals(day, stringDAO.get(date));
+        Assert.assertEquals(day, DAO.get(date));
     }
 }

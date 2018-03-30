@@ -1,7 +1,7 @@
 package com.javaextreme.tests;
 
-import com.javaextreme.dao.StringDAOImpl;
-import com.javaextreme.service.StringValidatorServiceImpl;
+import com.javaextreme.dao.DAOImpl;
+import com.javaextreme.service.ServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,16 +19,16 @@ import java.util.GregorianCalendar;
 import static org.mockito.Mockito.*;
 
 @RunWith(Parameterized.class)
-public class StringValidatorServiceImplTest {
+public class ServiceImplTest {
     @Rule
     public ExpectedException thrown= ExpectedException.none();
-    private StringValidatorServiceImpl stringValidator;
+    private ServiceImpl stringValidator;
     private String day;
     private Date date;
     private String dateString;
-    private StringDAOImpl stringDAOImpl;
+    private DAOImpl stringDAOImpl;
 
-    public StringValidatorServiceImplTest(String day, Date date, String dateString) {
+    public ServiceImplTest(String day, Date date, String dateString) {
         this.day = day;
         this.date = date;
         this.dateString = dateString;
@@ -36,9 +36,9 @@ public class StringValidatorServiceImplTest {
 
     @Before
     public void setUp() {
-        stringDAOImpl = mock(StringDAOImpl.class);
-        stringValidator = new StringValidatorServiceImpl();
-        stringValidator.setStringDAO(stringDAOImpl);
+        stringDAOImpl = mock(DAOImpl.class);
+        stringValidator = new ServiceImpl();
+        stringValidator.setDAO(stringDAOImpl);
     }
 
     @Parameterized.Parameters
@@ -55,16 +55,16 @@ public class StringValidatorServiceImplTest {
     }
 
     @Test
-    public void validate() throws ParseException {
+    public void getDayOfWeek() throws ParseException {
         when(stringDAOImpl.get(date)).thenReturn(day);
-        Assert.assertEquals(day, stringValidator.validate(dateString));
+        Assert.assertEquals(day, stringValidator.getDayOfWeek(dateString));
         verify(stringDAOImpl).get(date);
     }
 
     @Test
-    public void validateNegative() throws ParseException{
+    public void getDayOfWeekNegative() throws ParseException{
         thrown.expect(ParseException.class);
-        Assert.fail(stringValidator.validate("somestring"));
+        Assert.fail(stringValidator.getDayOfWeek("somestring"));
         verifyZeroInteractions(stringDAOImpl);
     }
 }

@@ -7,10 +7,9 @@
 
     <import resource="/service-context.xml"/>
     <import resource="/cache-context.xml"/>
-    <import resource="/customdao-context.xml"/>
+    <import resource="/dao-context.xml"/>
 
-    <bean id="stringreceiverui" class="com.javaextreme.ui.StringReceiverUIImpl">
-        <property name="stringValidatorService" ref="stringvalidatorservice"/>
+    <bean id="ui" class="com.javaextreme.ui.UIImpl" autowire="byType">
     </bean>
 
 </beans>

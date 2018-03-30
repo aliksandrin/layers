@@ -8,7 +8,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <surefire.version>2.12.4</surefire.version>
     </properties>
@@ -31,27 +31,27 @@
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>Service</artifactId>
-                <version>${project.version}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>UI</artifactId>
-                <version>${project.version}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>DAO</artifactId>
-                <version>${project.version}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>Cache</artifactId>
-                <version>${project.version}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>CustomDAO</artifactId>
-                <version>${project.version}</version>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
@@ -89,14 +89,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <testResources>
-            <testResource>
-                <directory>**/src/test/java</directory>
-            </testResource>
-        </testResources>
-    </build>
-
     <profiles>
         <profile>
             <id>default</id>
@@ -107,34 +99,16 @@
 
         <profile>
             <id>SkipTestCompilation</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${surefire.version}</version>
-                        <configuration>
-                            <skipTests>true</skipTests>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
         </profile>
 
         <profile>
             <id>SkipTestExecution</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${surefire.version}</version>
-                        <configuration>
-                            <skip>true</skip>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
         </profile>
 
         <profile>

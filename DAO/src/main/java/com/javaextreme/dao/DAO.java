@@ -2,6 +2,6 @@ package com.javaextreme.dao;
 
 import java.util.Date;
 
-public interface StringDAO {
+public interface DAO {
     String get(Date date);
 }
