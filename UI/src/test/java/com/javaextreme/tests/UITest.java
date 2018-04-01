@@ -36,7 +36,6 @@ public class UITest extends OutputStreamTest{
         service = mock(ServiceImpl.class);
         ui = new UIImpl();
         ui.setService(service);
-
     }
 
     @Parameterized.Parameters

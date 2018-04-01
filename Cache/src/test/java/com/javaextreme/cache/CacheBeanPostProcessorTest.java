@@ -34,14 +34,14 @@ public class CacheBeanPostProcessorTest {
     }
 
     @Test
-    public void postProcessBeforeInitializationTrueProxy() throws Exception {
+    public void postProcessBeforeInitializationTrueProxy() {
         CacheableInterfaceForTest cacheableInterfaceForTest
                 = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(testClass, "Mocked");
         Assert.assertEquals(true, cacheableInterfaceForTest.getClass().toString().contains("Proxy"));
     }
 
     @Test
-    public void cachePutInvocated() throws Exception {
+    public void cachePutInvocated() {
         CacheableInterfaceForTest cacheableInterfaceForTest
                 = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(testClass, "Mocked");
         cacheableInterfaceForTest.doSometh("some");
@@ -49,7 +49,7 @@ public class CacheBeanPostProcessorTest {
     }
 
     @Test
-    public void cacheGetInvocated() throws Exception {
+    public void cacheGetInvocated() {
         CacheableInterfaceForTest cacheableInterfaceForTest
                 = (CacheableInterfaceForTest) cacheBeanPostProcessor.postProcessBeforeInitialization(testClass, "Mocked");
         when(cacheMock.cacheGet(new String[]{"some"})).thenReturn(4);

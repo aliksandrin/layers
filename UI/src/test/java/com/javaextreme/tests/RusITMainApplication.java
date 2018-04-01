@@ -11,12 +11,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class ITMainApplication extends OutputStreamTest {
+public class RusITMainApplication extends OutputStreamTest {
 
     private String dateString;
     private String day;
 
-    public ITMainApplication(String day, String dateString) {
+    public RusITMainApplication(String day, String dateString) {
         this.day = day;
         this.dateString = dateString;
     }
@@ -24,13 +24,13 @@ public class ITMainApplication extends OutputStreamTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"monday", "12.03.2018"},
-                {"tuesday", "13.03.2018"},
-                {"wednesday", "14.03.2018"},
-                {"thursday", "15.03.2018"},
-                {"friday", "16.03.2018"},
-                {"saturday", "17.03.2018"},
-                {"sunday", "18.03.2018"}
+                {"понедельник", "12.03.2018"},
+                {"вторник", "13.03.2018"},
+                {"среда", "14.03.2018"},
+                {"четверг", "15.03.2018"},
+                {"пятница", "16.03.2018"},
+                {"суббота", "17.03.2018"},
+                {"воскресенье", "18.03.2018"}
         });
     }
 

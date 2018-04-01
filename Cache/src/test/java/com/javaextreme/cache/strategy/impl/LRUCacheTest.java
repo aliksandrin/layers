@@ -1,7 +1,6 @@
 package com.javaextreme.cache.strategy.impl;
 
 import com.javaextreme.cache.strategy.Cache;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,11 +33,13 @@ public class LRUCacheTest {
         Assert.assertEquals(day, cache.cachePut(dateString, day));
     }
 
-//    @Test
-//    public void cachePutMoreArgs() {
-//        cache.cachePut(new Object[]{"some", "string"}, day);
-//        Assert.assertEquals(day, cache.cachePut(new Object[]{"some", "string"}, day));
-//    }
+    @Test
+    public void cachePutMoreArgs() {
+        //int hash = Arrays.deepHashCode();
+        cache.cachePut(new Object[]{"some", "string"}, day);
+        Assert.assertEquals(day, cache.cachePut(new Object[]{"some", "string"}, day));
+        Assert.assertEquals(day, cache.cacheGet(new Object[]{"some", "string"}));
+    }
 
     @Test
     public void cachePutNull() {
@@ -53,10 +54,5 @@ public class LRUCacheTest {
         Assert.assertEquals(0, cache.cacheGet(0));
         cache.cachePut(3, 3);
         Assert.assertEquals(null, cache.cacheGet(0));
-    }
-
-    @After
-    public void after() {
-        cache.reset();
     }
 }

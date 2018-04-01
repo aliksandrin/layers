@@ -28,9 +28,12 @@ public class CacheBeanPostProcessor implements BeanPostProcessor {
                     Object result = cache.cacheGet(args);
                     if (result == null) {
                         try {
+
                             result = method.invoke(bean, args);
                             cache.cachePut(args, result);
-                        } catch (IllegalAccessException | InvocationTargetException e) {
+                        } catch (IllegalAccessException e) {
+                            logger.error("There is an error {} in proxy when {} invoked", e, method);
+                        } catch (InvocationTargetException e){
                             throw new ParseException("", 1);
                         }
                     } else {

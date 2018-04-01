@@ -5,44 +5,29 @@ import com.javaextreme.cache.strategy.Cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Arrays;
 
-public class LRUCache<K, V> implements Cache<K, V> {
+public class LRUCache implements Cache {
     private static final Logger logger = LoggerFactory.getLogger(LRUCache.class);
 
-    private CachedLinkedHashMap<K, V> map;
+    private CachedLinkedHashMap<Integer, Object> map;
 
     public LRUCache(int capacity) {
         this.map = new CachedLinkedHashMap<>(capacity);
     }
 
     @Override
-    public V cacheGet(K obj) {
-        return map.get(obj);
+    public Object cacheGet(Object obj) {
+        Object[] arr = new Object[]{obj};
+        int hash = Arrays.deepHashCode(arr);
+        return map.get(hash);
     }
 
     @Override
-    public V cachePut(K obj, V o) {
+    public Object cachePut(Object obj, Object o) {
+        Object[] arr = new Object[]{obj};
+        int hash = Arrays.deepHashCode(arr);
         logger.info("We'll put {} in cache!", obj);
-        return map.put(obj, o);
-    }
-
-    @Override
-    public void reset() {
-        map.clear();
-    }
-
-    private class CachedLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
-        private int capacity;
-
-        public CachedLinkedHashMap(int capacity) {
-            this.capacity = capacity;
-        }
-
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-            return this.size() >= this.capacity;
-        }
+        return map.put(hash, o);
     }
 }
