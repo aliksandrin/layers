@@ -3,15 +3,31 @@ package com.javaextreme.tests;
 import com.javaextreme.ui.MainApplication;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestContextManager;
+import org.springframework.test.context.junit4.rules.SpringClassRule;
+import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
+@ContextConfiguration(locations = {"classpath*:spring/application-context.xml",
+        "classpath*:spring/dao-context.xml", "classpath*:spring/service-context.xml", "classpath*:spring/cache-context.xml"})
 public class EngITMainApplication extends OutputStreamTest {
+    private TestContextManager testContextManager;
+
+    @ClassRule
+    public static final SpringClassRule SPRING_CLASS_RULE = new SpringClassRule();
+
+    @Rule
+    public final SpringMethodRule springMethodRule = new SpringMethodRule();
 
     private String dateString;
     private String day;
@@ -19,6 +35,12 @@ public class EngITMainApplication extends OutputStreamTest {
     public EngITMainApplication(String day, String dateString) {
         this.day = day;
         this.dateString = dateString;
+    }
+
+    @Before
+    public void setUpContext() throws Exception {
+        testContextManager = new TestContextManager(getClass());
+        testContextManager.prepareTestInstance(this);
     }
 
     @Parameterized.Parameters

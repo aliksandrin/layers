@@ -1,0 +1,59 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="oracle">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.javaextreme.carstore.domain.clients.Customer</class>
+        <class>com.javaextreme.carstore.domain.clients.Order</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Product</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Car</class>
+        <class>com.javaextreme.carstore.domain.vehicles.FuelCar</class>
+        <class>com.javaextreme.carstore.domain.vehicles.ElectroCar</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Truck</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Moto</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Brand</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Type</class>
+        <class>com.javaextreme.carstore.domain.clients.OrderItem</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Vehicle</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:oracle:thin:@odsstudora01.exigengroup.com:1521:testdb"/>
+            <property name="javax.persistence.jdbc.user" value="stud_aklochkova"/>
+            <property name="javax.persistence.jdbc.password" value="stud_aklochkova"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="h2db" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.javaextreme.carstore.domain.clients.Customer</class>
+        <class>com.javaextreme.carstore.domain.clients.Order</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Product</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Car</class>
+        <class>com.javaextreme.carstore.domain.vehicles.FuelCar</class>
+        <class>com.javaextreme.carstore.domain.vehicles.ElectroCar</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Truck</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Moto</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Brand</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Type</class>
+        <class>com.javaextreme.carstore.domain.clients.OrderItem</class>
+        <class>com.javaextreme.carstore.domain.vehicles.Vehicle</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:./data/test"/>
+            <property name="hibernate.connection.user" value="test"/>
+            <property name="hibernate.connection.password" value="test"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -5,12 +5,6 @@
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <import resource="/service-context.xml"/>
-    <import resource="/cache-context.xml"/>
-    <!--if you need default module just uncomment the line below, and comment "customdao"-->
-    <!--<import resource="/dao-context.xml"/>-->
-    <import resource="/customdao-context.xml"/>
-
     <bean id="ui" class="com.javaextreme.ui.UIImpl" autowire="byType">
     </bean>
 

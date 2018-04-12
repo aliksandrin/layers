@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Cache/Cache.iml" filepath="$PROJECT_DIR$/Cache/Cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarStore/CarStore.iml" filepath="$PROJECT_DIR$/CarStore/CarStore.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomDAO/CustomDAO.iml" filepath="$PROJECT_DIR$/CustomDAO/CustomDAO.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAO/DAO.iml" filepath="$PROJECT_DIR$/DAO/DAO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Deploy/Deploy.iml" filepath="$PROJECT_DIR$/Deploy/Deploy.iml" />
       <module fileurl="file://$PROJECT_DIR$/Service/Service.iml" filepath="$PROJECT_DIR$/Service/Service.iml" />
       <module fileurl="file://$PROJECT_DIR$/UI/UI.iml" filepath="$PROJECT_DIR$/UI/UI.iml" />
       <module fileurl="file://$PROJECT_DIR$/layers.iml" filepath="$PROJECT_DIR$/layers.iml" />

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="branddao"
+          class="com.javaextreme.carstore.repository.Impl.BrandDAOImpl">
+    </bean>
+
+    <bean id="customerdao"
+          class="com.javaextreme.carstore.repository.Impl.CustomerDAOImpl">
+    </bean>
+
+    <bean id="vehicle"
+          class="com.javaextreme.carstore.repository.Impl.VehicleDAOImpl">
+    </bean>
+
+    <bean id="orderdao"
+          class="com.javaextreme.carstore.repository.Impl.OrderDAOImpl">
+    </bean>
+
+    <bean id="orderitemdao"
+          class="com.javaextreme.carstore.repository.Impl.OrderItemDAOImpl">
+    </bean>
+
+    <bean id="productdao"
+          class="com.javaextreme.carstore.repository.Impl.ProductDAOImpl">
+    </bean>
+
+    <bean id="truckdao"
+          class="com.javaextreme.carstore.repository.Impl.TruckDAOImpl">
+    </bean>
+
+    <bean id="electrocardao"
+          class="com.javaextreme.carstore.repository.Impl.ElectroCarDAOImpl">
+    </bean>
+
+    <bean id="fuelcardao"
+          class="com.javaextreme.carstore.repository.Impl.FuelCarDAOImpl">
+    </bean>
+
+    <bean id="motodao"
+          class="com.javaextreme.carstore.repository.Impl.MotoDAOImpl">
+    </bean>
+
+    <bean id="typedao"
+          class="com.javaextreme.carstore.repository.Impl.TypeDAOImpl">
+    </bean>
+</beans>

@@ -11,6 +11,13 @@
         <junit.version>4.12</junit.version>
         <mockito.version>1.9.5</mockito.version>
         <surefire.version>2.12.4</surefire.version>
+        <spring.version>5.0.5.RELEASE</spring.version>
+        <liquibase.version>3.6.1</liquibase.version>
+        <liquibase.changeLogFile>com.javaextreme.db/changelog/changelog-master.xml</liquibase.changeLogFile>
+        <liquibase.url>jdbc:oracle:thin:@odsstudora01.exigengroup.com:1521:testdb</liquibase.url>
+        <liquibase.driver>oracle.jdbc.driver.OracleDriver</liquibase.driver>
+        <liquibase.username>stud_aklochkova</liquibase.username>
+        <liquibase.password>stud_aklochkova</liquibase.password>
     </properties>
 
     <groupId>com.javaextreme</groupId>
@@ -23,80 +30,106 @@
         <module>DAO</module>
         <module>Cache</module>
         <module>CustomDAO</module>
+        <module>CarStore</module>
+        <module>Deploy</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>Service</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>UI</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>DAO</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>Cache</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.javaextreme</groupId>
                 <artifactId>CustomDAO</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>1.7.25</version>
             </dependency>
-
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
-
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>5.0.4.RELEASE</version>
+                <version>${spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>5.0.4.RELEASE</version>
+                <version>${spring.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>5.2.16.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.197</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc8</artifactId>
+                <version>12.2.0.1</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
     <profiles>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-
         <profile>
             <id>SkipTestCompilation</id>
             <properties>

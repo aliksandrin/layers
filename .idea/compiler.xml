@@ -12,16 +12,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Cache" />
+        <module name="CarStore" />
         <module name="CustomDAO" />
         <module name="DAO" />
+        <module name="Deploy" />
         <module name="Service" />
         <module name="UI" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Cache" target="1.8" />
+      <module name="CarStore" target="1.8" />
       <module name="CustomDAO" target="1.8" />
       <module name="DAO" target="1.8" />
+      <module name="Deploy" target="1.8" />
       <module name="layers" target="1.8" />
       <module name="Service" target="1.8" />
       <module name="trash" target="1.8" />

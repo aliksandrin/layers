@@ -13,7 +13,7 @@
     </option>
   </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/src/main/resources/log4j.xml" />
+    <file url="file://$PROJECT_DIR$/CarStore/src/main/resources/hibernate/hibernate.cfg.xml" />
   </component>
   <component name="ProjectResources">
     <resource url="http://jakarta.apache.org/log4j/" location="$PROJECT_DIR$" />

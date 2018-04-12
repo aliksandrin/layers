@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="1" author="stud-aklochkova">
+        <createTable tableName="CUSTOMERS">
+            <column name="customer_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="email" type="varchar(100)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="phone" type="varchar(15)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="stud-aklochkova">
+        <createTable tableName="ORDERS">
+            <column name="order_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="int">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="FK_customers_orders"
+                        references="CUSTOMERS(customer_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="stud-aklochkova">
+        <createTable tableName="TYPES">
+            <column name="type_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="type_title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="stud-aklochkova">
+        <createTable tableName="BRANDS">
+            <column name="brand_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="brand_title" type="varchar(150)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="stud-aklochkova">
+        <createTable tableName="CATALOG">
+            <column name="model_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="brand_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="FK_BRANDS_CATALOG"
+                             references="BRANDS(brand_id)"/>
+            </column>
+            <column name="type_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="FK_TYPES_CATALOG"
+                             references="TYPES(type_id)"/>
+            </column>
+            <column name="cargoCapacity" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="num_of_passengers" type="TINYINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="battery_power" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="frame_type" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="stud-aklochkova">
+        <createTable tableName="ORDER_ITEMS">
+            <column name="item_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="price" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_item_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="FK_CATALOG_ORDER_ITEMS"
+                             references="CATALOG(model_id)"/>
+            </column>
+            <column name="order_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="FK_orders_ORDER_ITEMS"
+                             references="ORDERS(order_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="stud-aklochkova">
+        <createTable tableName="STOCK">
+            <column name="item_id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="price" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="FK_STOCK_CATALOG"
+                             references="CATALOG(model_id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="8" author="stud-aklochkova">
+        <createTable tableName="BRANDS_TYPES">
+            <column name="brand_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="type_id" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="brand"
+                                 baseTableName="BRANDS_TYPES" baseColumnNames="brand_id"
+                                 referencedTableName="BRANDS" referencedColumnNames="brand_id"/>
+        <addForeignKeyConstraint constraintName="type"
+                                 baseTableName="BRANDS_TYPES" baseColumnNames="type_id"
+                                 referencedTableName="TYPES" referencedColumnNames="type_id"/>
+    </changeSet>
+</databaseChangeLog>
