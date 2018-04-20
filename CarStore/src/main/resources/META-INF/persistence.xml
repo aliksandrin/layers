@@ -20,13 +20,13 @@
         <class>com.javaextreme.carstore.domain.vehicles.Vehicle</class>
 
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <property name="javax.persistence.jdbc.url"
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="hibernate.connection.url"
                       value="jdbc:oracle:thin:@odsstudora01.exigengroup.com:1521:testdb"/>
-            <property name="javax.persistence.jdbc.user" value="stud_aklochkova"/>
-            <property name="javax.persistence.jdbc.password" value="stud_aklochkova"/>
+            <property name="hibernate.connection.username" value="stud_aklochkova"/>
+            <property name="hibernate.connection.password" value="stud_aklochkova"/>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 

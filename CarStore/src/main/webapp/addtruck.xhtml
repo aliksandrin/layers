@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/templates/templLayout.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup id="title">
+                        <p:outputLabel styleClass="title">Add truck</p:outputLabel>
+
+                        <h:panelGrid  columns="2" cellpadding="5">
+                            <p:outputLabel for="brands" value="Brand: "/>
+                            <p:selectOneRadio id="brands" value="#{truck.brand}" layout="grid" columns="5">
+                                <f:selectItems value="#{branddao.findAll()}" var="brand" itemLabel="#{brand}"
+                                               itemValue="#{brand}"/>
+                                <p:ajax event="click" update="@form"/>
+                            </p:selectOneRadio>
+
+                            <p:outputLabel for="types" value="Type: "/>
+                            <p:selectOneRadio id="types" value="#{truck.type}" layout="grid" columns="3">
+                                <f:selectItems value="#{brand.types}" var="type" itemLabel="#{type}"
+                                               itemValue="#{type}"/>
+                            </p:selectOneRadio>
+
+                            <p:outputLabel for="cargo" value="Cargo capacity: "/>
+                            <p:inputText value="#{truck.cargoCapacity}" id="cargo"/>
+
+                        </h:panelGrid>
+
+                        <h:outputText id="type2" value="#{brand}"/>
+                        <p:commandButton value="Submit" action="#{fuelcardao.create(fuelCar)}" icon="ui-icon-check"
+                                         update="display" oncomplete="PF('dlg').show()"/>
+
+                        <p:dialog style="background: white" header="Saved" widgetVar="dlg" minHeight="40" id="display">
+                            <h:outputText value="#{truck}"/>
+                        </p:dialog>
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,236 @@
+body {
+    padding: 3% 10% 0 10%;
+    font-family: Libre Franklin;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    color: #686868;
+    background-color: #F2F2F2;
+
+}
+header {
+    background-color: white;
+}
+
+.main-container {
+    color: white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.h1 {
+    font: 300 100px LibreFranklin, sans-serif;
+    color: #686868;
+    text-decoration: none !important;
+}
+
+.h2 {
+    font: 300 50px LibreFranklin, sans-serif;
+    color: #686868;
+    text-decoration: none !important;
+}
+
+.main-container .button {
+    font: 100 30px LibreFranklin, sans-serif;
+    text-decoration: none !important;
+    width: 275px;
+    height: 75px;
+    border: none;
+    color: white;
+    margin-top: 70px;
+    background: linear-gradient(to top, #5cb0ec, #66e2ef);
+    border-radius: 6px;
+    transition: .5s;
+    outline: none;
+    box-shadow: -9px 0px 50px 1px rgba(0, 0, 0, 0.15);
+}
+
+.ui-panel .ui-panel-titlebar {
+    background: unset;
+}
+
+.custom-menu-bar {
+    resize: none;
+    display: inline-block;
+    padding-left: 134px;
+    padding-right: 134px;
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
+
+}
+
+.ui-menu .ui-menu-list .ui-menuitem {
+    padding: 0 5px 0 5px;
+    background-color: unset;
+}
+
+.ui-widget {
+    border: none;
+    background-color: unset;
+}
+
+.ui-widget .ui-widget {
+    box-shadow: none;
+}
+
+.ui-paginator.ui-paginator-bottom {
+    background-color: #fff;
+    border: none;
+    padding-bottom: 10px;
+}
+
+.ui-widget-content {
+    border: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.ui-menu .ui-menu-parent .ui-menu-child{
+    background-color: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
+}
+
+.ui-datagrid .ui-datagrid-header, .ui-datagrid .ui-datagrid-footer {
+    text-align: center;
+    padding: 10px 10px;
+    font-size: 20px;
+}
+
+.ui-paginator .ui-paginator-page, .ui-paginator .ui-paginator-next, .ui-paginator .ui-paginator-last, .ui-paginator .ui-paginator-first, .ui-paginator .ui-paginator-prev {
+    background-color: white;
+    border: none;
+}
+
+.ui-paginator .ui-paginator-current, .ui-paginator .ui-paginator-rpp-options {
+    background-color: white;
+    border: none;
+}
+
+.ui-datagrid .ui-datagrid-header {
+    background-color: white;
+    border: none;
+}
+
+.ui-menuitem .ui-widget .ui-corner-all {
+    letter-spacing: -.01em;
+    z-index: 1;
+    left: auto;
+    display: inline-block;
+    opacity: 1;
+    background: no-repeat;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: Libre Franklin;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    color: #686868;
+}
+
+
+.ui-widget .ui-menuitem .ui-corner-all .ui-menu-parent .ui-menuitem-active {
+    padding: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: none white;
+    z-index: 9999;
+    display: block;
+    margin: 0;
+    min-width: 1024px;
+    height: 30px;
+    max-height: 44px;
+    background: white;
+    user-select: none;
+    text-align: center;
+    font: 300 18px LibreFranklin, sans-serif;
+    color: #686868;
+}
+
+.title {
+    font-size: 30px;
+    box-shadow: none;
+}
+
+a {
+    outline: 0
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    font-family: Libre Franklin;
+    font-style: normal;
+    font-weight: 700;
+    color: #686868;
+    background: none;
+    box-shadow: none;
+}
+
+.content-container {
+    border-radius: 6px;
+    width: content-box;
+    background-color: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
+    padding: 20px;
+}
+
+.content-container .content{
+    background-color: white;
+    box-shadow: none;
+    padding: 5px;
+
+}
+
+.ui-button .ui-button-text {
+    background-color: white;
+    border-radius: 6px;
+}
+
+.ui-button .ui-button-text:hover {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
+}
+
+.ui-inputfield {
+    background-color: white;
+}
+
+.ui-inputfield:hover {
+    box-shadow:none;
+}
+
+.ui-state-default .ui-icon{
+    background-color: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    background-color: unset;
+
+}
+
+.ui-menu .ui-menubar .ui-widget .ui-widget-content .ui-corner-all .ui-helper-clearfix .custom-menu-bar .ui-resizable {
+    background: white;
+}

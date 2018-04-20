@@ -15,11 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "ORDER_ITEMS")
-public class OrderItem {
+public class OrderItem implements Serializable {
+    private static final long serialVersionUID = 530044437484258062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")

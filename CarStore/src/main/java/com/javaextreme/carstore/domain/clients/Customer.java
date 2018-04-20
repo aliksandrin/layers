@@ -8,12 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMERS")
-public class Customer {
+public class Customer implements Serializable {
+    private static final long serialVersionUID = -530086768384258062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
@@ -98,5 +101,13 @@ public class Customer {
     public int hashCode() {
 
         return Objects.hash(getId(), getFirstName(), getLastName(), getEmail(), getPhone());
+    }
+
+    @Override
+    public String toString() {
+        return "First Name : " + firstName + "\n" +
+                "Last Name : " + lastName + "\n" +
+                ", Email : " + email + "\n" +
+                ", Phone : " + phone;
     }
 }

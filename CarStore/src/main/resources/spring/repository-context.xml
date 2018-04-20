@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+           https://www.springframework.org/context/spring-context.xsd">
+
+    <context:annotation-config/>
 
     <bean id="branddao"
           class="com.javaextreme.carstore.repository.Impl.BrandDAOImpl">
@@ -12,7 +18,7 @@
           class="com.javaextreme.carstore.repository.Impl.CustomerDAOImpl">
     </bean>
 
-    <bean id="vehicle"
+    <bean id="vehicledao"
           class="com.javaextreme.carstore.repository.Impl.VehicleDAOImpl">
     </bean>
 
@@ -47,4 +53,24 @@
     <bean id="typedao"
           class="com.javaextreme.carstore.repository.Impl.TypeDAOImpl">
     </bean>
+
+    <bean id="customer" class="com.javaextreme.carstore.domain.clients.Customer" scope="session"/>
+
+    <bean id="order" class="com.javaextreme.carstore.domain.clients.Order" scope="session"/>
+
+    <bean id="orderItem" class="com.javaextreme.carstore.domain.clients.OrderItem" scope="request"/>
+
+    <bean id="product" class="com.javaextreme.carstore.domain.vehicles.Product" scope="request"/>
+
+    <bean id="type" class="com.javaextreme.carstore.domain.vehicles.Type" scope="request"/>
+
+    <bean id="brand" class="com.javaextreme.carstore.domain.vehicles.Brand" scope="request"/>
+
+    <bean id="fuelCar" class="com.javaextreme.carstore.domain.vehicles.FuelCar" scope="request"/>
+
+    <bean id="electroCar" class="com.javaextreme.carstore.domain.vehicles.ElectroCar" scope="request"/>
+
+    <bean id="moto" class="com.javaextreme.carstore.domain.vehicles.Moto" scope="request"/>
+
+    <bean id="truck" class="com.javaextreme.carstore.domain.vehicles.Truck" scope="request"/>
 </beans>

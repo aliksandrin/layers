@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/templates/templLayout.xhtml">
+            <ui:define name="content">
+                <h:panelGroup id="title">
+                    <p:outputLabel styleClass="title">Profile</p:outputLabel>
+                </h:panelGroup>
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <p:outputLabel for="customer-firstname" value="First name: "/>
+                    <h:outputText value="#{customerdao.read(1).firstName}" id="customer-firstname" />
+                    <p:outputLabel for="customer-lastname" value="Last name: "/>
+                    <h:outputText value="#{customerdao.read(1).lastName}" id="customer-lastname"/>
+                    <p:outputLabel for="customer-phone" value="Phone: "/>
+                    <h:outputText value="#{customerdao.read(1).phone}" id="customer-phone"/>
+                    <p:outputLabel for="customer-email" value="Email: "/>
+                    <h:outputText value="#{customerdao.read(1).email}" id="customer-email"/>
+                </h:panelGrid>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

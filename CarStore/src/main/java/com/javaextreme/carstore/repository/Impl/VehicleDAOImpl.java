@@ -6,54 +6,40 @@ import com.javaextreme.carstore.domain.vehicles.Vehicle;
 import com.javaextreme.carstore.repository.VehicleDAO;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Transactional
-public class VehicleDAOImpl implements VehicleDAO {
-    @PersistenceContext
-    private EntityManager entityManager;
 
-    @Override
-    public void addVehicle(Vehicle vehicle) {
-        entityManager.persist(vehicle);
+public class VehicleDAOImpl extends BasicDAOImpl<Vehicle> implements VehicleDAO {
+
+    public VehicleDAOImpl() {
+        super(Vehicle.class);
     }
 
-    @Override
-    public Vehicle updateVehicle(Vehicle vehicle) {
-        return entityManager.merge(vehicle);
-    }
-
-    @Override
-    public Vehicle getVehicle(Integer vehicleId) {
-        Vehicle result = entityManager.find(Vehicle.class, vehicleId);
-        return result;
-    }
-
+    @Transactional
     @SuppressWarnings("unchecked")
     @Override
     public List<Vehicle> findAll() {
-        List<Vehicle> vehicles = entityManager.createNativeQuery("SELECT * from CATALOG").getResultList();
-        return vehicles;
+        return (List<Vehicle>) entityManager.createNativeQuery("SELECT * from CATALOG", Vehicle.class).getResultList();
     }
 
-    @Override
-    public void deleteVehicle(Vehicle vehicle) {
-        entityManager.remove(vehicle);
-    }
-
+    @Transactional
     @Override
     public Brand getBrand(Integer vehicleId) {
-        Vehicle result = entityManager.find(Vehicle.class, vehicleId);
-        Brand brand = result.getBrand();
-        return brand;
+        Vehicle result = read(vehicleId);
+        return result.getBrand();
     }
 
+    @Transactional
     @Override
     public Type getType(Integer vehicleId) {
-        Vehicle result = entityManager.find(Vehicle.class, vehicleId);
-        Type type = result.getType();
-        return type;
+        Vehicle result = read(vehicleId);
+        return result.getType();
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<String> getCategories() {
+        return (List<String>) entityManager.createNativeQuery("SELECT CATEGORY FROM CATALOG GROUP BY CATEGORY", String.class).getResultList();
     }
 }

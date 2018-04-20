@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:body>
+        <h:form>
+            <ui:composition>
+                <p:menubar style="background: white" id="tb" styleClass="custom-menu-bar">
+                    <p:menuitem styleClass="menu-bar" value="Home" url="index.xhtml"/>
+                    <p:menuitem styleClass="menu-bar" value="Store" url="store.xhtml"/>
+                    <p:submenu label="Add">
+                        <p:menuitem styleClass="menu-bar" value="Add new product" url="add.xhtml"/>
+                        <p:submenu label="Add new model">
+                            <p:menuitem styleClass="menu-bar" value="Add moto" url="addmoto.xhtml"/>
+                            <p:menuitem styleClass="menu-bar" value="Add fuel car" url="addcuelcar.xhtml"/>
+                            <p:menuitem styleClass="menu-bar" value="Add electro car" url="addelectrocar.xhtml"/>
+                            <p:menuitem styleClass="menu-bar" value="Add truck" url="addtruck.xhtml"/>
+                        </p:submenu>
+                        <p:menuitem styleClass="menu-bar" value="Add brand" url="addbrand.xhtml"/>
+                        <p:menuitem styleClass="menu-bar" value="Add type" url="addtype.xhtml"/>
+                    </p:submenu>
+                    <p:menuitem styleClass="menu-bar" value="Cart" url="cart.xhtml"/>
+
+                    <f:facet name="options">
+                        <p:link styleClass="ui-widget ui-menuitem ui-corner-all ui-menu-parent" value="Register" outcome="addcustomer.xhtml"/>
+                        <p:link styleClass="ui-widget ui-menuitem ui-corner-all ui-menu-parent" value="Profile" outcome="cabinet.xhtml"/>
+                    </f:facet>
+                </p:menubar>
+                <p:sticky target="tb"/>
+                <p:resizable for="tb"/>
+            </ui:composition>
+        </h:form>
+    </h:body>
+</html>

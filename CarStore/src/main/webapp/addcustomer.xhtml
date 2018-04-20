@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/templates/templLayout.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup id="title">
+                        <p:outputLabel styleClass="title">Add Customer</p:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+                        <p:outputLabel for="fN" value="First Name: "/>
+                        <p:inputText value="#{customer.firstName}" id="fN"/>
+
+                        <p:outputLabel for="lN" value="Last Name: "/>
+                        <p:inputText value="#{customer.lastName}" id="lN"/>
+
+                        <p:outputLabel for="email" value="Email: "/>
+                        <p:inputText value="#{customer.email}" id="email"/>
+
+                        <p:outputLabel for="phone" value="Phone: "/>
+                        <p:inputText value="#{customer.phone}" id="phone"/>
+
+                        <p:commandButton value="Register" action="#{customerdao.create(customer)}" icon="ui-icon-check"
+                                         update="display" oncomplete="PF('dlg').show()"/>
+                        <p:commandButton value="Update info" action="#{customerdao.update(customer)}" icon="ui-icon-check"
+                                         update="display1" oncomplete="PF('dlg2').show()"/>
+
+                    </h:panelGrid>
+                    <p:dialog style="top: 40%;left: 45%;" closable="true" header="Saved" modal="true" resizable="false"
+                              widgetVar="dlg">
+                        <h:panelGrid columns="1" id="display">
+                            <h:outputText value="Thank you for register: #{customer.firstName}"/>
+                        </h:panelGrid>
+                    </p:dialog>
+                    <p:dialog style="top: 40%;left: 45%;" closable="true" header="Saved" modal="true" resizable="false"
+                              widgetVar="dlg2">
+                        <h:panelGrid columns="1" id="display1">
+                            <h:outputText value="Info updated: #{customer}"/>
+                        </h:panelGrid>
+                    </p:dialog>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

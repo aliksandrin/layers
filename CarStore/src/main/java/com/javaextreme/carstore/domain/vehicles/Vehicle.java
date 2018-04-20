@@ -10,34 +10,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "CATALOG")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "MODELS")
-public class Vehicle {
+@DiscriminatorColumn(name = "CATEGORY")
+public class Vehicle implements Serializable {
+    private static final long serialVersionUID = 223423759384258062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "model_id")
-    private Integer id;
+    protected Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
-    private Product product;
+    protected Product product;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name="brand_id")
-    private Brand brand;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Brand.class)
+    @PrimaryKeyJoinColumn
+    @NotNull
+    protected Brand brand;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinColumn(name="type_id")
-    private Type type;
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Type.class)
+    @PrimaryKeyJoinColumn
+    @NotNull
+    protected Type type;
 
 
     public Vehicle() {
@@ -80,14 +85,13 @@ public class Vehicle {
         if (this == o) return true;
         if (!(o instanceof Vehicle)) return false;
         Vehicle vehicle = (Vehicle) o;
-        return Objects.equals(getId(), vehicle.getId()) &&
-                Objects.equals(getBrand(), vehicle.getBrand()) &&
-                Objects.equals(getType(), vehicle.getType());
+        return Objects.equals(brand, vehicle.brand) &&
+                Objects.equals(type, vehicle.type);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getBrand(), getType());
+        return Objects.hash(brand, type);
     }
 }

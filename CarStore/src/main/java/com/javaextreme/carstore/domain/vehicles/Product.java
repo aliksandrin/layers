@@ -1,5 +1,6 @@
 package com.javaextreme.carstore.domain.vehicles;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,16 +11,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "STOCK")
-public class Product {
+public class Product implements Serializable {
+    private static final long serialVersionUID = -530023759384258062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Integer id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Vehicle vehicle;
     @Max(99)
     @Column(name = "quantity")
@@ -61,5 +66,27 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return Objects.equals(vehicle, product.vehicle) &&
+                Objects.equals(quantity, product.quantity) &&
+                Objects.equals(price, product.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vehicle, quantity, price);
+    }
+
+    @Override
+    public String toString() {
+        return vehicle +
+                ", quantity=" + quantity +
+                ", price=" + price;
     }
 }

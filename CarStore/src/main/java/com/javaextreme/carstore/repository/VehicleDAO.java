@@ -6,20 +6,11 @@ import com.javaextreme.carstore.domain.vehicles.Vehicle;
 
 import java.util.List;
 
-public interface VehicleDAO {
-    void addVehicle(Vehicle vehicle);
-
-    Vehicle updateVehicle(Vehicle vehicle);
-
-    Vehicle getVehicle(Integer vehicleId);
-
-    @SuppressWarnings("unchecked")
-    List<Vehicle> findAll();
-
-    void deleteVehicle(Vehicle vehicle);
-
+public interface VehicleDAO extends BasicDAO<Vehicle>{
     Brand getBrand(Integer vehicleId);
 
     Type getType(Integer vehicleId);
+
+    List<String> getCategories();
 
 }

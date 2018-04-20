@@ -12,12 +12,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "TYPES")
-public class Type {
+public class Type implements Serializable {
+    private static final long serialVersionUID = 533344759384258062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "type_id")
@@ -30,9 +33,9 @@ public class Type {
     @JoinTable(name = "BRANDS_TYPES", joinColumns = {
             @JoinColumn(name = "type_id")},
             inverseJoinColumns = {@JoinColumn(name = "brand_id")})
-    private Set<Brand> brands;
+    private List<Brand> brands;
     @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
-    private Set<Vehicle> vehicle;
+    private List<Vehicle> vehicle;
 
     public Type() {
     }
@@ -53,19 +56,19 @@ public class Type {
         this.title = title;
     }
 
-    public Set<Brand> getBrands() {
+    public List<Brand> getBrands() {
         return brands;
     }
 
-    public void setBrands(Set<Brand> brands) {
+    public void setBrands(List<Brand> brands) {
         this.brands = brands;
     }
 
-    public Set<Vehicle> getVehicle() {
+    public List<Vehicle> getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Set<Vehicle> vehicle) {
+    public void setVehicle(List<Vehicle> vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -74,13 +77,16 @@ public class Type {
         if (this == o) return true;
         if (!(o instanceof Type)) return false;
         Type type = (Type) o;
-        return Objects.equals(getId(), type.getId()) &&
-                Objects.equals(getTitle(), type.getTitle());
+        return Objects.equals(title, type.title);
     }
 
     @Override
     public int hashCode() {
+        return Objects.hash(title);
+    }
 
-        return Objects.hash(getId(), getTitle());
+    @Override
+    public String toString() {
+        return title;
     }
 }

@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/templates/templLayout.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup id="title">
+                        <p:outputLabel styleClass="title">Add brand</p:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="btitle" value="Title: "/>
+                        <p:inputText value="#{brand.title}" id="btitle"/>
+
+                        <p:outputLabel for="types" value="Types:"/>
+                        <p:selectManyCheckbox id="types" value="#{brand.types}" layout="grid" columns="3">
+                            <f:selectItems value="#{typedao.findAll()}" var="type" itemLabel="#{type}"
+                                           itemValue="#{type}"/>
+                        </p:selectManyCheckbox>
+                    </h:panelGrid>
+
+                    <p:commandButton value="Submit" action="#{branddao.create(brand)}" icon="ui-icon-check"
+                                     update="display" oncomplete="PF('dlg').show()"/>
+
+                    <p:dialog style="top: 40%;left: 45%;" closable="true" header="Saved" modal="true" resizable="false"
+                              widgetVar="dlg">
+                        <h:panelGrid columns="1" id="display">
+                            <h:outputText value="Brand: #{brand.title}"/>
+                        </h:panelGrid>
+                    </p:dialog>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

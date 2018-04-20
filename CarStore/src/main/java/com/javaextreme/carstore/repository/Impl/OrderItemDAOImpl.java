@@ -6,49 +6,36 @@ import com.javaextreme.carstore.domain.vehicles.Product;
 import com.javaextreme.carstore.repository.OrderItemDAO;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Transactional
-public class OrderItemDAOImpl implements OrderItemDAO{
-    @PersistenceContext
-    private EntityManager entityManager;
+public class OrderItemDAOImpl extends BasicDAOImpl<OrderItem> implements OrderItemDAO {
 
-    @Override
-    public void addOrderItem(OrderItem orderItem) {
-        entityManager.persist(orderItem);
+    public OrderItemDAOImpl() {
+        super(OrderItem.class);
     }
 
-    @Override
-    public OrderItem updateOrderItem(OrderItem orderItem) {
-        return entityManager.merge(orderItem);
-    }
-
-    @Override
-    public OrderItem getOrderItem(Integer orderItemId) {
-        return entityManager.find(OrderItem.class, orderItemId);
-    }
-
+    @Transactional
     @SuppressWarnings("unchecked")
     @Override
     public List<OrderItem> findAll() {
-        List<OrderItem> orderItems = entityManager.createNativeQuery("SELECT * from ORDER_ITEMS").getResultList();
-        return orderItems;
+        return (List<OrderItem>) entityManager.createNativeQuery("SELECT * from ORDER_ITEMS", OrderItem.class).getResultList();
     }
 
-    @Override
-    public void delete(OrderItem orderItem) {
-        entityManager.remove(orderItem);
-    }
-
+    @Transactional
     @Override
     public Order getOrder(Integer orderItemId) {
-        return entityManager.find(OrderItem.class, orderItemId).getOrder();
+        return read(orderItemId).getOrder();
+    }
+
+    @Transactional
+    @Override
+    public Product getProduct(Integer orderItemId) {
+        return read(orderItemId).getProduct();
     }
 
     @Override
-    public Product getProduct(Integer orderItemId) {
-        return entityManager.find(OrderItem.class, orderItemId).getProduct();
+    public void addItemToOrder(Order order, OrderItem orderItem) {
+        orderItem.setOrder(order);
+        create(orderItem);
     }
 }

@@ -94,6 +94,7 @@
             <column name="frame_type" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
+            <column name="VEHICLE_MODEL_ID" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
@@ -157,4 +158,5 @@
                                  baseTableName="BRANDS_TYPES" baseColumnNames="type_id"
                                  referencedTableName="TYPES" referencedColumnNames="type_id"/>
     </changeSet>
+
 </databaseChangeLog>

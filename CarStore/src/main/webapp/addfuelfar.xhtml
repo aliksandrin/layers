@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/templates/templLayout.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup id="title">
+                        <p:outputLabel styleClass="title">Add Fuel Car</p:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+                        <p:outputLabel for="brands" value="Brand: "/>
+                        <p:selectOneRadio id="brands" value="#{fuelCar.brand}" layout="grid" columns="5">
+                            <f:selectItems value="#{branddao.findAll()}" var="brand" itemLabel="#{brand}"
+                                           itemValue="#{brand}"/>
+                            <p:ajax event="click" update="@form"/>
+                        </p:selectOneRadio>
+
+                        <p:outputLabel for="types" value="Type: "/>
+                        <p:selectOneRadio id="types" value="#{fuelCar.type}" layout="grid" columns="3">
+                            <f:selectItems value="#{brand.types}" var="type" itemLabel="#{type}"
+                                           itemValue="#{type}"/>
+                        </p:selectOneRadio>
+
+                        <p:outputLabel for="nOP" value="Number of passengers: "/>
+                        <p:inputText value="#{fuelCar.noOfPassengers}" id="nOP"/>
+
+                        <p:outputLabel for="eV" value="Engine volume: "/>
+                        <p:inputText value="#{fuelCar.engineVolume}" id="eV"/>
+
+                        <p:commandButton value="Submit" action="#{fuelcardao.create(fuelCar)}" icon="ui-icon-check"
+                                         update="display" oncomplete="PF('dlg').show()"/>
+
+                    </h:panelGrid>
+                    <p:dialog style="top: 40%;left: 45%;" closable="true" header="Saved" modal="true" resizable="false"
+                              widgetVar="dlg">
+                        <h:panelGrid columns="1" id="display">
+                            <h:outputText value="Brand: #{fuelCar}"/>
+                        </h:panelGrid>
+                    </p:dialog>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

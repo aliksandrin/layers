@@ -5,50 +5,29 @@ import com.javaextreme.carstore.domain.vehicles.Type;
 import com.javaextreme.carstore.repository.BrandDAO;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Set;
 
-@Transactional
-public class BrandDAOImpl implements BrandDAO {
-    @PersistenceContext
-    private EntityManager entityManager;
 
-    @Override
-    public void addBrand(Brand brand) {
-        entityManager.persist(brand);
+public class BrandDAOImpl extends BasicDAOImpl<Brand> implements BrandDAO{
+    public BrandDAOImpl() {
+        super(Brand.class);
     }
 
-    @Override
-    public Brand updateBrand(Brand brand) {
-        Brand result = entityManager.merge(brand);
-        return result;
-    }
-
-    @Override
-    public Brand getBrand(Integer brandId) {
-        Brand result = entityManager.find(Brand.class, brandId);
-        return result;
-    }
-
-    @Override
+    @Transactional
     @SuppressWarnings("unchecked")
     public List<Brand> findAll() {
-        List<Brand> brands = entityManager.createNativeQuery("SELECT * from BRANDS").getResultList();
-        return brands;
+        return (List<Brand>) entityManager.createNativeQuery("SELECT * from BRANDS", Brand.class).getResultList();
+    }
+
+    @Transactional
+    @Override
+    public List<Type> getTypes(Integer brandId) {
+        Brand result = read(brandId);
+        return result.getTypes();
     }
 
     @Override
-    public void delete(Brand brand) {
-        entityManager.remove(brand);
-
-    }
-
-    @Override
-    public Set<Type> getTypes(Integer brandId) {
-        Brand result = entityManager.find(Brand.class, brandId);
-        Set<Type> res = result.getTypes();
-        return res;
+    public Integer getBrandIdByName(String name) {
+        return (Integer)entityManager.createNativeQuery("SELECT brand_id from BRANDS WHERE BRAND_TITLE="+name, Brand.class).getResultList().get(0);
     }
 }

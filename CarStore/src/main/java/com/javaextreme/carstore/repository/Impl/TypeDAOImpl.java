@@ -5,49 +5,25 @@ import com.javaextreme.carstore.domain.vehicles.Type;
 import com.javaextreme.carstore.repository.TypeDAO;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Set;
 
-@Transactional
-public class TypeDAOImpl implements TypeDAO {
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Override
-    public void addType(Type type) {
-        entityManager.persist(type);
+public class TypeDAOImpl extends BasicDAOImpl<Type> implements TypeDAO {
+    public TypeDAOImpl() {
+        super(Type.class);
     }
 
-    @Override
-    public Type updateType(Type type) {
-        Type result = entityManager.merge(type);
-        return result;
-    }
-
-    @Override
-    public Type getType(Integer typeId) {
-        Type result = entityManager.find(Type.class, typeId);
-        return result;
-    }
-
+    @Transactional
     @SuppressWarnings("unchecked")
     @Override
     public List<Type> findAll() {
-        List<Type> brands = entityManager.createNativeQuery("SELECT * from TYPES").getResultList();
-        return brands;
+        return (List<Type>) entityManager.createNativeQuery("SELECT * from TYPES", Type.class).getResultList();
     }
 
+    @Transactional
     @Override
-    public void delete(Type type) {
-        entityManager.remove(type);
-    }
-
-    @Override
-    public Set<Brand> getTypes(Integer typeId) {
-        Type result = entityManager.find(Type.class, typeId);
-        Set<Brand> res = result.getBrands();
+    public List<Brand> getBrands(Integer typeId) {
+        Type result = read(typeId);
+        List<Brand> res = result.getBrands();
         return res;
     }
 }

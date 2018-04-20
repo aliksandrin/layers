@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/templates/templLayout.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+
+
+                    <p:dataGrid var="product" value="#{vehicledao.findAll()}" columns="3" layout="grid"
+                                rows="4" paginator="true" paginatorPosition="bottom" id="cars"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="6,12,16" paginatorAlwaysVisible="false">
+
+                        <f:facet name="header">
+                            Cars in Stock
+                        </f:facet>
+
+                        <p:panel style="text-align:center;border: none">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <p:graphicImage name="../resources/img/#{product.brand}.jpg"/>
+                                <h:link value="#{product}"/>
+                                <h:link value="#{product}" outcome="edit" >
+                                    <f:param value="#{product}"/>
+                                </h:link>
+                            </h:panelGrid>
+                        </p:panel>
+
+                    </p:dataGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

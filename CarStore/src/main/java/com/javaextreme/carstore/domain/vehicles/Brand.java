@@ -1,6 +1,5 @@
 package com.javaextreme.carstore.domain.vehicles;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,12 +12,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "BRANDS")
-public class Brand {
+public class Brand implements Serializable {
+    private static final long serialVersionUID = -530086737484258062L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
@@ -28,13 +30,13 @@ public class Brand {
     @Column(name = "brand_title", length = 150)
     private String title;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "BRANDS_TYPES", joinColumns = {
             @JoinColumn(name = "brand_id")},
             inverseJoinColumns = {@JoinColumn(name = "type_id")})
-    private Set<Type> types;
+    private List<Type> types;
     @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
-    private Set<Vehicle> vehicle;
+    private List<Vehicle> vehicle;
 
     public Brand() {
     }
@@ -55,19 +57,19 @@ public class Brand {
         this.title = title;
     }
 
-    public Set<Type> getTypes() {
+    public List<Type> getTypes() {
         return types;
     }
 
-    public void setTypes(Set<Type> types) {
+    public void setTypes(List<Type> types) {
         this.types = types;
     }
 
-    public Set<Vehicle> getVehicle() {
+    public List<Vehicle> getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Set<Vehicle> vehicle) {
+    public void setVehicle(List<Vehicle> vehicle) {
         this.vehicle = vehicle;
     }
 
@@ -76,13 +78,18 @@ public class Brand {
         if (this == o) return true;
         if (!(o instanceof Brand)) return false;
         Brand brand = (Brand) o;
-        return Objects.equals(getId(), brand.getId()) &&
-                Objects.equals(getTitle(), brand.getTitle());
+        return Objects.equals(title, brand.title);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getTitle());
+        return Objects.hash(title);
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
+
 }
