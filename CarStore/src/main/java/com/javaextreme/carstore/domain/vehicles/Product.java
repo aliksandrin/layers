@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -29,7 +28,6 @@ public class Product implements Serializable {
     @Max(99)
     @Column(name = "quantity")
     private Integer quantity;
-    @NotNull
     @Column(name = "price")
     private Integer price;
 
@@ -52,19 +50,19 @@ public class Product implements Serializable {
         this.vehicle = vehicle;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

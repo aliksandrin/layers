@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+
+    <var name="productFlow" class="com.javaextreme.carstore.domain.vehicles.Product"/>
+
+    <view-state id="store" view="/store.xhtml">
+        <transition on="_eventId_view" to="view">
+        </transition>
+    </view-state>
+
+    <view-state id="view" view="/view.xhtml" model="productFlow">
+        <transition on="_eventId_edit" to="editInfo"/>
+    </view-state>
+
+    <action-state id="editInfo">
+        <evaluate expression="productdao.update(productFlow)"/>
+        <transition on="updateProduct" to="updated"/>
+    </action-state>
+
+    <end-state id="updated"/>
+</flow>

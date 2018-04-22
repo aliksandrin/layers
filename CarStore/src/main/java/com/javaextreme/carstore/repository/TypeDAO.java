@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface TypeDAO extends BasicDAO<Type>{
     List<Brand> getBrands(Integer typeId);
+
+    Type getTypeByName(String value);
 }

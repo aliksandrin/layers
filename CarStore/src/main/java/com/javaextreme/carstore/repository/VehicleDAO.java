@@ -12,5 +12,4 @@ public interface VehicleDAO extends BasicDAO<Vehicle>{
     Type getType(Integer vehicleId);
 
     List<String> getCategories();
-
 }

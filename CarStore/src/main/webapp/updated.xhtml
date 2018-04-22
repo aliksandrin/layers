@@ -1,17 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:insert name="head">
-        <ui:include src="resources/templates/templHead.xhtml"/>
+        <ui:include src="/resources/templates/templLayout.xhtml"/>
     </ui:insert>
 
     <h:body style="color: white;position: fixed;width: 100%;height: 100%;background-color: #fff;padding: 0px">
         <div class="main-container">
-            <p:outputLabel styleClass="h1"
-                           style="margin-top:-130px;margin-bottom:10px;box-shadow: none">Hello, maaan!</p:outputLabel>
-            <p:link styleClass="main-container button" outcome="store.xhtml" value="ENTER"/>
+            <p:outputLabel
+                    style="font-size:30px;margin-top:-130px;margin-bottom:10px;box-shadow: none">Product was updated, thank you.</p:outputLabel>
+            <p:link styleClass="main-container button" outcome="store.xhtml" value="Return to store"/>
         </div>
     </h:body>
 </html>

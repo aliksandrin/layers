@@ -1,11 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
     <h:body>
-        <ui:composition template="/templates/templLayout.xhtml">
+        <ui:composition template="/resources/templates/templLayout.xhtml">
             <ui:define name="content">
                 <h:form>
                     <h:panelGroup id="title">
@@ -20,7 +19,8 @@
                         <p:inputText value="#{customer.lastName}" id="lN"/>
 
                         <p:outputLabel for="email" value="Email: "/>
-                        <p:inputText value="#{customer.email}" id="email"/>
+                        <p:inputText value="#{customer.email}" id="email">
+                        </p:inputText>
 
                         <p:outputLabel for="phone" value="Phone: "/>
                         <p:inputText value="#{customer.phone}" id="phone"/>

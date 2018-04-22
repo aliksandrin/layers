@@ -34,12 +34,12 @@ public class Vehicle implements Serializable {
     @PrimaryKeyJoinColumn
     protected Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Brand.class)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
     @NotNull
     protected Brand brand;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Type.class)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
     @NotNull
     protected Type type;
@@ -91,7 +91,6 @@ public class Vehicle implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(brand, type);
     }
 }

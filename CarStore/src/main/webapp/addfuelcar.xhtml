@@ -5,25 +5,26 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:body>
-        <ui:composition template="/templates/templLayout.xhtml">
+        <ui:composition template="/resources/templates/templLayout.xhtml">
             <ui:define name="content">
                 <h:form>
                     <h:panelGroup id="title">
                         <p:outputLabel styleClass="title">Add Fuel Car</p:outputLabel>
                     </h:panelGroup>
-                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-
+                    <h:panelGrid id="grid" columns="2" cellpadding="5">
                         <p:outputLabel for="brands" value="Brand: "/>
-                        <p:selectOneRadio id="brands" value="#{fuelCar.brand}" layout="grid" columns="5">
+                        <p:selectOneMenu id="brands" value="#{fuelCar.brand}"
+                                         converter="#{brandconverter}">
                             <f:selectItems value="#{branddao.findAll()}" var="brand" itemLabel="#{brand}"
                                            itemValue="#{brand}"/>
-                            <p:ajax event="click" update="@form"/>
-                        </p:selectOneRadio>
-
+                            <p:ajax update="@this"/>
+                        </p:selectOneMenu>
                         <p:outputLabel for="types" value="Type: "/>
-                        <p:selectOneRadio id="types" value="#{fuelCar.type}" layout="grid" columns="3">
-                            <f:selectItems value="#{brand.types}" var="type" itemLabel="#{type}"
+                        <p:selectOneRadio id="types" value="#{fuelCar.type}" layout="grid" columns="6"
+                                          converter="#{typeconverter}">
+                            <f:selectItems value="#{typedao.findAll()}" var="type" itemLabel="#{type}"
                                            itemValue="#{type}"/>
+                            <p:ajax update="@this"/>
                         </p:selectOneRadio>
 
                         <p:outputLabel for="nOP" value="Number of passengers: "/>
@@ -34,12 +35,11 @@
 
                         <p:commandButton value="Submit" action="#{fuelcardao.create(fuelCar)}" icon="ui-icon-check"
                                          update="display" oncomplete="PF('dlg').show()"/>
-
                     </h:panelGrid>
-                    <p:dialog style="top: 40%;left: 45%;" closable="true" header="Saved" modal="true" resizable="false"
-                              widgetVar="dlg">
+                    <p:dialog style="background-color: white" closable="true" header="Saved" modal="true"
+                              resizable="false" widgetVar="dlg">
                         <h:panelGrid columns="1" id="display">
-                            <h:outputText value="Brand: #{fuelCar}"/>
+                            <h:outputText value="Car saved: #{fuelCar}"/>
                         </h:panelGrid>
                     </p:dialog>
 

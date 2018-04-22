@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BrandDAO extends BasicDAO<Brand> {
     List<Type> getTypes(Integer brandId);
-    Integer getBrandIdByName(String name);
+    Brand getBrandByName(String name);
 }

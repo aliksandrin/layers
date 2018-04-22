@@ -8,6 +8,7 @@ body {
     background-color: #F2F2F2;
 
 }
+
 header {
     background-color: white;
 }
@@ -58,7 +59,7 @@ header {
 }
 
 .ui-panel .ui-panel-titlebar {
-    background: unset;
+    background-color: unset;
 }
 
 .custom-menu-bar {
@@ -80,13 +81,13 @@ header {
 }
 
 .ui-menu .ui-menu-list .ui-menuitem {
-    padding: 0 5px 0 5px;
+    padding: 0 5px;
     background-color: unset;
 }
 
 .ui-widget {
     border: none;
-    background-color: unset;
+    background-color: inherit;
 }
 
 .ui-widget .ui-widget {
@@ -105,7 +106,7 @@ header {
     text-align: center;
 }
 
-.ui-menu .ui-menu-parent .ui-menu-child{
+.ui-menu .ui-menu-parent .ui-menu-child {
     background-color: white;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
 }
@@ -137,7 +138,6 @@ header {
     left: auto;
     display: inline-block;
     opacity: 1;
-    background: no-repeat;
     text-decoration: none;
     white-space: nowrap;
     font-family: Libre Franklin;
@@ -146,7 +146,6 @@ header {
     font-size: 18px;
     color: #686868;
 }
-
 
 .ui-widget .ui-menuitem .ui-corner-all .ui-menu-parent .ui-menuitem-active {
     padding: 0;
@@ -164,7 +163,7 @@ header {
     min-width: 1024px;
     height: 30px;
     max-height: 44px;
-    background: white;
+    background-color: white;
     user-select: none;
     text-align: center;
     font: 300 18px LibreFranklin, sans-serif;
@@ -185,7 +184,7 @@ a {
     font-style: normal;
     font-weight: 700;
     color: #686868;
-    background: none;
+    background-color: unset;
     box-shadow: none;
 }
 
@@ -197,7 +196,7 @@ a {
     padding: 20px;
 }
 
-.content-container .content{
+.content-container .content {
     background-color: white;
     box-shadow: none;
     padding: 5px;
@@ -207,6 +206,7 @@ a {
 .ui-button .ui-button-text {
     background-color: white;
     border-radius: 6px;
+    color: #20bdb0;
 }
 
 .ui-button .ui-button-text:hover {
@@ -218,10 +218,10 @@ a {
 }
 
 .ui-inputfield:hover {
-    box-shadow:none;
+    box-shadow: none;
 }
 
-.ui-state-default .ui-icon{
+.ui-state-default .ui-icon {
     background-color: white;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
 }
@@ -232,5 +232,40 @@ a {
 }
 
 .ui-menu .ui-menubar .ui-widget .ui-widget-content .ui-corner-all .ui-helper-clearfix .custom-menu-bar .ui-resizable {
-    background: white;
+    background-color: white;
+}
+
+.ui-datagrid .ui-widget {
+    position: relative;
+}
+
+.ui-state-hover {
+    background-color: #aff5fc;
+}
+
+.ui-selectonemenu-trigger .ui-state-default .ui-corner-right {
+    background-color: white;
+}
+
+.data-table {
+    background-color: white;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
+}
+
+.column-table {
+    background-color: white;
+    border-color: #d5d5d5;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+    padding: 15px 0 15px 0;
+}
+
+.ui-selectonemenu-panel .ui-widget .ui-widget-content .ui-corner-all .ui-helper-hidden .ui-shadow .ui-input-overlay {
+    background-color: white;
+}
+.ui-shadow {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.02), 0 4px 4px 0 rgba(0, 0, 0, 0.02), 0 8px 8px 0 rgba(0, 0, 0, 0.02), 0 16px 16px 0 rgba(0, 0, 0, 0.02), 0 32px 32px 0 rgba(0, 0, 0, 0.02), 0 64px 64px 0 rgba(0, 0, 0, 0.02);
 }

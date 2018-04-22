@@ -43,7 +43,7 @@ public class FuelCar extends Car implements Serializable {
 
     @Override
     public String toString() {
-        return "FuelCar " + "\n" + brand + "\n" + type + "\n" + " number of pass " + super.getNoOfPassengers() + "\n" +
+        return "FuelCar "+ brand + " " + type + " number of passengers " + super.getNoOfPassengers() +
                 " engineVolume " + engineVolume;
     }
 }

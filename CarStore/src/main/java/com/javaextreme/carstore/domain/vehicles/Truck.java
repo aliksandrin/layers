@@ -42,9 +42,7 @@ public class Truck extends Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Truck" +
-                "cargoCapacity=" + cargoCapacity +
-                ", brand=" + brand +
-                ", type=" + type;
+        return "Truck " + " " + brand + " " + type +
+                " cargoCapacity " + cargoCapacity;
     }
 }

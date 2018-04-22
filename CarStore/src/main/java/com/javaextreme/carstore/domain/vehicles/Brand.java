@@ -18,7 +18,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "BRANDS")
-public class Brand implements Serializable {
+public class Brand implements Serializable{
     private static final long serialVersionUID = -530086737484258062L;
 
     @Id
@@ -27,7 +27,7 @@ public class Brand implements Serializable {
     private Integer id;
 
     @Size(min = 2, max = 150)
-    @Column(name = "brand_title", length = 150)
+    @Column(name = "brand_title", length = 150, unique = true)
     private String title;
 
     @ManyToMany(fetch = FetchType.EAGER)

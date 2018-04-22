@@ -42,6 +42,6 @@ public class Moto extends Vehicle implements Serializable {
 
     @Override
     public String toString() {
-        return "Moto " + " " + (brand != null ? brand: "")  + " " + type + " " + frame;
+        return "Moto " + brand  + " " + type + " " + frame;
     }
 }

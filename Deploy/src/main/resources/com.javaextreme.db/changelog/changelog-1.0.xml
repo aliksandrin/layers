@@ -69,15 +69,16 @@
 
     <changeSet id="5" author="stud-aklochkova">
         <createTable tableName="CATALOG">
+            <column name="CATEGORY" type="varchar(31)"/>
             <column name="model_id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="brand_id" type="int">
+            <column name="BRAND_BRAND_ID" type="int">
                 <constraints nullable="false"
                              foreignKeyName="FK_BRANDS_CATALOG"
                              references="BRANDS(brand_id)"/>
             </column>
-            <column name="type_id" type="int">
+            <column name="TYPE_TYPE_ID" type="int">
                 <constraints nullable="false"
                              foreignKeyName="FK_TYPES_CATALOG"
                              references="TYPES(type_id)"/>

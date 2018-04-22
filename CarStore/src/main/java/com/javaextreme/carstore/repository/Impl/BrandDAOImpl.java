@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-public class BrandDAOImpl extends BasicDAOImpl<Brand> implements BrandDAO{
+public class BrandDAOImpl extends BasicDAOImpl<Brand> implements BrandDAO {
     public BrandDAOImpl() {
         super(Brand.class);
     }
@@ -27,7 +27,8 @@ public class BrandDAOImpl extends BasicDAOImpl<Brand> implements BrandDAO{
     }
 
     @Override
-    public Integer getBrandIdByName(String name) {
-        return (Integer)entityManager.createNativeQuery("SELECT brand_id from BRANDS WHERE BRAND_TITLE="+name, Brand.class).getResultList().get(0);
+    public Brand getBrandByName(String name) {
+        return (Brand) entityManager.createNativeQuery(
+                "SELECT * from BRANDS WHERE BRAND_TITLE='" + name + "'", Brand.class).getResultList().get(0);
     }
 }

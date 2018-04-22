@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:body>
-        <ui:composition template="/templates/templLayout.xhtml">
+        <ui:composition template="/resources/templates/templLayout.xhtml">
             <ui:define name="content">
                 <h:form>
                     <h:panelGroup id="title">
@@ -16,7 +16,7 @@
                         <p:inputText value="#{brand.title}" id="btitle"/>
 
                         <p:outputLabel for="types" value="Types:"/>
-                        <p:selectManyCheckbox id="types" value="#{brand.types}" layout="grid" columns="3">
+                        <p:selectManyCheckbox id="types" value="#{brand.types}" layout="grid" columns="6">
                             <f:selectItems value="#{typedao.findAll()}" var="type" itemLabel="#{type}"
                                            itemValue="#{type}"/>
                         </p:selectManyCheckbox>
@@ -25,7 +25,7 @@
                     <p:commandButton value="Submit" action="#{branddao.create(brand)}" icon="ui-icon-check"
                                      update="display" oncomplete="PF('dlg').show()"/>
 
-                    <p:dialog style="top: 40%;left: 45%;" closable="true" header="Saved" modal="true" resizable="false"
+                    <p:dialog style="background: white" closable="true" header="Saved" modal="true" resizable="false"
                               widgetVar="dlg">
                         <h:panelGrid columns="1" id="display">
                             <h:outputText value="Brand: #{brand.title}"/>

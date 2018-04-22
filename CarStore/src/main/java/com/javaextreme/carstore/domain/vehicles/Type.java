@@ -27,7 +27,7 @@ public class Type implements Serializable {
     private Integer id;
 
     @NotNull
-    @Column(name = "type_title", length = 50)
+    @Column(name = "type_title", length = 50, unique = true)
     private String title;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "BRANDS_TYPES", joinColumns = {

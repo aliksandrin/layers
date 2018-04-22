@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--suppress SpringFacetInspection -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/context
-           https://www.springframework.org/context/spring-context.xsd">
+                            http://www.springframework.org/schema/context
+                            https://www.springframework.org/context/spring-context.xsd">
 
     <context:annotation-config/>
 
@@ -73,4 +72,12 @@ http://www.springframework.org/schema/context
     <bean id="moto" class="com.javaextreme.carstore.domain.vehicles.Moto" scope="request"/>
 
     <bean id="truck" class="com.javaextreme.carstore.domain.vehicles.Truck" scope="request"/>
+
+    <bean id="vehicle" class="com.javaextreme.carstore.domain.vehicles.Vehicle" scope="request"/>
+
+    <bean id="brandconverter" class="com.javaextreme.carstore.converter.BrandConverter"/>
+
+    <bean id="typeconverter" class="com.javaextreme.carstore.converter.TypeConverter"/>
+
+    <bean id="vehicleconverter" class="com.javaextreme.carstore.converter.VehicleConverter" autowire="byName"/>
 </beans>

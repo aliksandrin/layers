@@ -30,8 +30,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -51,9 +49,6 @@ public class ITCarStore {
     private Customer customer;
     private Order order;
     private OrderItem orderItem;
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Autowired
     private BrandDAO brandDAO;
@@ -152,15 +147,13 @@ public class ITCarStore {
     @Test
     public void daoType() {
 
-        Assert.assertEquals(type, typeDAO.read(1));
+        Assert.assertEquals(type, typeDAO.read(3));
         List<Type> types = typeDAO.findAll();
-        Assert.assertEquals(1, types.size());
-        Type t1 = typeDAO.read(1);
+        Assert.assertEquals(3, types.size());
+        Type t1 = typeDAO.read(3);
         t1.setTitle("mini");
         typeDAO.update(t1);
-        Assert.assertEquals("mini", typeDAO.read(1).getTitle());
-        typeDAO.delete(type);
-        Assert.assertNull(typeDAO.read(1));
+        Assert.assertEquals("mini", typeDAO.read(3).getTitle());
     }
 
     @Test
@@ -173,8 +166,6 @@ public class ITCarStore {
         t1.setTitle("Hyndai");
         brandDAO.update(t1);
         Assert.assertEquals("Hyndai", brandDAO.read(1).getTitle());
-        brandDAO.delete(brand);
-        Assert.assertNull(brandDAO.read(1));
     }
 
     @Test
@@ -188,8 +179,6 @@ public class ITCarStore {
         truckDAO.update(t1);
         Truck t2 = (Truck) truckDAO.read(2);
         Assert.assertEquals(t1.getCargoCapacity(), t2.getCargoCapacity());
-        truckDAO.delete(truck);
-        Assert.assertNull(truckDAO.read(2));
     }
 
 
@@ -203,8 +192,6 @@ public class ITCarStore {
         t1.setFirstName("Masha");
         customerDAO.update(t1);
         Assert.assertEquals("Masha", customerDAO.read(1).getFirstName());
-        customerDAO.delete(customer);
-        Assert.assertNull(customerDAO.read(1));
     }
 
     @Test
@@ -218,8 +205,6 @@ public class ITCarStore {
         t1.setQuantity(10);
         orderDAO.update(order);
         Assert.assertEquals(Integer.valueOf(10), orderDAO.read(1).getQuantity());
-        orderDAO.delete(order);
-        Assert.assertNull(orderDAO.read(1));
     }
 
     @Test
@@ -232,8 +217,6 @@ public class ITCarStore {
         t1.setQuantity(10);
         orderItemDAO.update(orderItem);
         Assert.assertEquals(Integer.valueOf(10), (Integer) orderItemDAO.read(1).getQuantity());
-        orderItemDAO.delete(orderItem);
-        Assert.assertNull(orderItemDAO.read(1));
     }
 
     @Test
@@ -247,8 +230,6 @@ public class ITCarStore {
         electroCarDAO.update(t1);
         ElectroCar t2 = (ElectroCar) electroCarDAO.read(1);
         Assert.assertEquals(t1.getBatteryPower(), t2.getBatteryPower());
-        electroCarDAO.delete(electroCar);
-        Assert.assertNull(electroCarDAO.read(1));
     }
 
     @Test
@@ -262,8 +243,6 @@ public class ITCarStore {
         fuelCarDAO.update(t1);
         FuelCar t2 = (FuelCar) fuelCarDAO.read(7);
         Assert.assertEquals(t1.getEngineVolume(), t2.getEngineVolume());
-        fuelCarDAO.delete(fuelCar);
-        Assert.assertNull(fuelCarDAO.read(7));
     }
 
     @Test
@@ -277,22 +256,17 @@ public class ITCarStore {
         motoDAO.update(t1);
         Moto t2 = (Moto) motoDAO.read(1);
         Assert.assertEquals(t1.getFrame(), t2.getFrame());
-        motoDAO.delete(moto);
-        Assert.assertNull(motoDAO.read(1));
     }
 
     @Test
     public void daoProduct() {
-
-        Assert.assertEquals(product, productDAO.read(1));
-        Assert.assertEquals(truck, productDAO.getVehicle(1));
+        Assert.assertEquals(product, productDAO.read(9));
+        Assert.assertEquals(truck, productDAO.getVehicle(9));
         List<Product> products = productDAO.findAll();
-        Assert.assertEquals(1, products.size());
-        Product t1 = productDAO.read(1);
+        Assert.assertEquals(9, products.size());
+        Product t1 = productDAO.read(9);
         t1.setQuantity(12);
         productDAO.update(t1);
-        Assert.assertEquals(t1.getQuantity(), productDAO.read(1).getQuantity());
-        productDAO.delete(product);
-        Assert.assertNull(productDAO.read(1));
+        Assert.assertEquals(t1.getQuantity(), productDAO.read(9).getQuantity());
     }
 }

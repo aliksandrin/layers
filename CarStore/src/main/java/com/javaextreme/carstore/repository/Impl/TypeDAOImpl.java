@@ -26,4 +26,10 @@ public class TypeDAOImpl extends BasicDAOImpl<Type> implements TypeDAO {
         List<Brand> res = result.getBrands();
         return res;
     }
+
+    @Override
+    public Type getTypeByName(String value) {
+        return (Type) entityManager.createNativeQuery(
+                "SELECT * from TYPES WHERE TYPE_TITLE='" + value + "'", Type.class).getResultList().get(0);
+    }
 }

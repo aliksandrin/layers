@@ -45,11 +45,9 @@ public class ElectroCar extends Car implements Serializable {
 
     @Override
     public String toString() {
-        return "ElectroCar " +
-                "batteryPower=" + batteryPower +
-                ", noOfPassengers=" + noOfPassengers +
-                ", brand=" + brand +
-                ", type=" + type;
+        return "ElectroCar " + brand + " " + type +
+                " batteryPower " + batteryPower +
+                " noOfPassengers " + noOfPassengers;
     }
 }
 
