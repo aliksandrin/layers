@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view>
+        <h:body>
+            <ui:composition template="/resources/templates/templLayout.xhtml">
+                <ui:define name="content">
+                    <h:form id="form">
+                        <p:dataTable var="product" value="#{productdao.findAll()}" paginator="true"
+                                     paginatorAlwaysVisible="false"
+                                     paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
+                                     paginatorPosition="bottom" rows="5" id="grid"
+                                     styleClass="data-table" widgetVar="carsTable">
+                            <p:column headerText="Model" styleClass="column-table">
+                                <h:outputText value="#{product.vehicle.id}"/>
+                            </p:column>
+                            <p:column headerText="Brand" styleClass="column-table" filterBy="#{product.vehicle.brand}"
+                                      filterMatchMode="equals">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu id="brands" onchange="PF('carsTable').filter()"
+                                                     converter="#{brandconverter}">
+                                        <f:selectItem itemLabel=" " noSelectionOption="true"/>
+                                        <f:selectItems value="#{branddao.findAll()}" var="brand" itemLabel="#{brand}"
+                                                       itemValue="#{brand}"/>
+                                        <p:ajax update="@this"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
+                                <h:outputText value="#{product.vehicle.brand}"/>
+                            </p:column>
+                            <p:column headerText="Type" styleClass="column-table" filterBy="#{product.vehicle.type}"
+                                      filterMatchMode="equals">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu id="types" onchange="PF('carsTable').filter()"
+                                                     converter="#{typeconverter}">
+                                        <f:selectItem itemLabel=" " noSelectionOption="true"/>
+                                        <f:selectItems value="#{typedao.findAll()}" var="type" itemLabel="#{type}"
+                                                       itemValue="#{type}"/>
+                                        <p:ajax update="@this"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
+                                <h:outputText value="#{product.vehicle.type}"/>
+                            </p:column>
+                            <p:column headerText="Quantity" styleClass="column-table">
+                                <h:outputText value="#{product.quantity}"/>
+                            </p:column>
+                            <p:column headerText="Price" styleClass="column-table">
+                                <h:outputText value="$ #{product.price}"/>
+                            </p:column>
+                            <p:column styleClass="column-table">
+                                <p:commandButton action="_eventId_view" value="View" title="transition on=_eventId_view"
+                                                 style="border: none"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>

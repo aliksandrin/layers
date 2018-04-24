@@ -18,7 +18,7 @@
                     <p:outputLabel for="price" value="Price: "/>
                     <h:outputText value="#{productFlow.price}" id="price"/>
 
-                    <p:commandButton action="_eventId_edit" value="#{productFlow}"/>
+                    <p:commandButton action="_eventId_edit" title="transition on=_eventId_edit" value="#{productFlow}"/>
                 </h:panelGrid>
             </ui:define>
         </ui:composition>
