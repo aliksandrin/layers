@@ -4,7 +4,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <f:view>
         <h:body>
             <ui:composition template="/resources/templates/templLayout.xhtml">
                 <ui:define name="content">
@@ -14,10 +13,13 @@
                                      paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
                                      paginatorPosition="bottom" rows="5" id="grid"
                                      styleClass="data-table" widgetVar="carsTable">
-                            <p:column headerText="Model" styleClass="column-table">
+                            <p:column headerText="Model"
+                                      styleClass="column-table">
                                 <h:outputText value="#{product.vehicle.id}"/>
                             </p:column>
-                            <p:column headerText="Brand" styleClass="column-table" filterBy="#{product.vehicle.brand}"
+                            <p:column headerText="Brand"
+                                      styleClass="column-table"
+                                      filterBy="#{product.vehicle.brand}"
                                       filterMatchMode="equals">
                                 <f:facet name="filter">
                                     <p:selectOneMenu id="brands" onchange="PF('carsTable').filter()"
@@ -58,5 +60,4 @@
                 </ui:define>
             </ui:composition>
         </h:body>
-    </f:view>
 </html>

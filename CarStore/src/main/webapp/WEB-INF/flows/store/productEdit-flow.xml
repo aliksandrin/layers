@@ -7,7 +7,7 @@
 
     <var name="productFlow" class="com.javaextreme.carstore.domain.vehicles.Product"/>
 
-    <view-state id="store" view="store.xhtml">
+    <view-state id="store" view="../../views/store.xhtml">
         <transition on="_eventId_view" to="view">
         </transition>
     </view-state>
