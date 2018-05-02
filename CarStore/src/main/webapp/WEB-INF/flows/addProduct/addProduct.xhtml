@@ -27,7 +27,7 @@
                         <p:inputText value="#{product.quantity}" id="qua"/>
                     </h:panelGrid>
 
-                    <p:commandButton value="Submit" action="#{productdao.create(product)}" icon="ui-icon-check"
+                    <p:commandButton value="Submit" action="_eventId_save" icon="ui-icon-check"
                                      update="display" oncomplete="PF('dlg').show()"/>
 
                     <p:dialog style="background-color: white" header="Saved" modal="true" resizable="false"

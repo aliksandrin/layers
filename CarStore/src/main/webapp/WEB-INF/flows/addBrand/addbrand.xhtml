@@ -22,7 +22,7 @@
                         </p:selectManyCheckbox>
                     </h:panelGrid>
 
-                    <p:commandButton value="Submit" action="#{branddao.create(brand)}" icon="ui-icon-check"
+                    <p:commandButton value="Submit" action="_eventId_save" icon="ui-icon-check"
                                      update="display" oncomplete="PF('dlg').show()"/>
 
                     <p:dialog style="background: white" closable="true" header="Saved" modal="true" resizable="false"

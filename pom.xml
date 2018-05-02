@@ -14,11 +14,6 @@
         <spring.version>5.0.3.RELEASE</spring.version>
         <webflow.version>2.5.0.RELEASE</webflow.version>
         <liquibase.version>3.6.1</liquibase.version>
-        <liquibase.changeLogFile>com.javaextreme.db/changelog/changelog-master.xml</liquibase.changeLogFile>
-        <liquibase.url>jdbc:oracle:thin:@odsstudora01.exigengroup.com:1521:testdb</liquibase.url>
-        <liquibase.driver>oracle.jdbc.driver.OracleDriver</liquibase.driver>
-        <liquibase.username>stud_aklochkova</liquibase.username>
-        <liquibase.password>stud_aklochkova</liquibase.password>
     </properties>
 
     <groupId>com.javaextreme</groupId>

@@ -18,7 +18,8 @@
                     <p:outputLabel for="price" value="Price: "/>
                     <p:inputText id="price" value="#{product.price}"/>
 
-                    <p:commandButton value="Submit" action="_eventId_edit" title="transition on=_eventId_edit" icon="ui-icon-check"
+                    <p:commandButton value="Submit" action="_eventId_updateProduct"
+                                     title="transition on=_eventId_updateProduct" icon="ui-icon-check"
                                      update="display" oncomplete="PF('dlg').show()" />
 
                     <p:dialog header="Saved" modal="true" resizable="false" showEffect="fade" widgetVar="dlg">

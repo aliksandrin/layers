@@ -25,9 +25,9 @@
                         <p:outputLabel for="phone" value="Phone: "/>
                         <p:inputText value="#{customer.phone}" id="phone"/>
 
-                        <p:commandButton value="Register" action="#{customerdao.create(customer)}" icon="ui-icon-check"
+                        <p:commandButton value="Register" action="_eventId_save" icon="ui-icon-check"
                                          update="display" oncomplete="PF('dlg').show()"/>
-                        <p:commandButton value="Update info" action="#{customerdao.update(customer)}" icon="ui-icon-check"
+                        <p:commandButton value="Update info" action="_eventId_update" icon="ui-icon-check"
                                          update="display1" oncomplete="PF('dlg2').show()"/>
 
                     </h:panelGrid>

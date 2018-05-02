@@ -33,7 +33,7 @@
                         <p:outputLabel for="eV" value="Engine volume: "/>
                         <p:inputText value="#{fuelCar.engineVolume}" id="eV"/>
 
-                        <p:commandButton value="Submit" action="#{fuelcardao.create(fuelCar)}" icon="ui-icon-check"
+                        <p:commandButton value="Submit" action="_eventId_save" icon="ui-icon-check"
                                          update="display" oncomplete="PF('dlg').show()"/>
                     </h:panelGrid>
                     <p:dialog style="background-color: white" closable="true" header="Saved" modal="true"

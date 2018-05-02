@@ -19,10 +19,6 @@
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc8</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-maven-plugin</artifactId>
-        </dependency>
     </dependencies>
 
     <profiles>
@@ -35,11 +31,7 @@
                         <artifactId>liquibase-maven-plugin</artifactId>
                         <version>${liquibase.version}</version>
                         <configuration>
-                            <changeLogFile>${liquibase.changeLogFile}</changeLogFile>
-                            <driver>${liquibase.driver}</driver>
-                            <url>${liquibase.url}</url>
-                            <username>${liquibase.username}</username>
-                            <password>${liquibase.password}</password>
+                            <propertyFile>liquibase.properties</propertyFile>
                         </configuration>
                         <executions>
                             <execution>
