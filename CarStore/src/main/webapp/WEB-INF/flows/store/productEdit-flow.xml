@@ -5,21 +5,22 @@
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
 
-    <input name="prod" type="com.javaextreme.carstore.domain.vehicles.Product"/>
+    <var name="prod" class="com.javaextreme.carstore.domain.vehicles.Product"/>
 
-    <view-state id="store" view="store.xhtml">
-        <transition on="_eventId_view" to="view"/>
-    </view-state>
-
-    <view-state id="view" view="view.xhtml" model="prod">
-        <transition on="_eventId_edit" to="editInfo"/>
-    </view-state>
-
-    <view-state id="editInfo" view="edit.xhtml">
-        <transition on="_eventId_updateProduct" to="updated">
-            <evaluate expression="productdao.update(product)"/>
+    <view-state id="store">
+        <var name="products" class="com.javaextreme.carstore.domain.vehicles.Product"/>
+        <transition on="_eventId_view" to="view">
+            <set name="prod" value="products.product"/>
         </transition>
     </view-state>
 
-    <end-state id="updated" view="updated.xhtml"/>
+    <view-state id="view" model="prod">
+        <transition on="_eventId_editInfo" to="edit"/>
+    </view-state>
+
+    <view-state id="edit" model="prod">
+        <transition on="_eventId_updateProduct" to="store">
+            <evaluate expression="productdao.update(prod)"/>
+        </transition>
+    </view-state>
 </flow>

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import java.io.Serializable;
 import java.util.Objects;
@@ -30,6 +31,9 @@ public class Product implements Serializable {
     private Integer quantity;
     @Column(name = "price")
     private Integer price;
+
+    @Transient
+    private Product product;
 
     public Product() {
     }
@@ -64,6 +68,14 @@ public class Product implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override

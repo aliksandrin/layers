@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces.xsd">
 
 
-    <beans:import resource="classpath:spring/*-context.xml"/>
+    <!--<beans:import resource="classpath:spring/*-context.xml"/>-->
 
     <view-controller path="/greeting"/>
 

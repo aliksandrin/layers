@@ -37,7 +37,7 @@ import java.util.List;
 
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/h2db-testcontext.xml", "classpath:spring/repository-context.xml"})
+@ContextConfiguration(locations = {"classpath:META-INF/spring/h2db-testcontext.xml", "classpath:META-INF/spring/repository-context.xml"})
 public class ITCarStore {
     private Brand brand;
     private ElectroCar electroCar;

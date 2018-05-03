@@ -7,27 +7,29 @@
     <h:body>
         <ui:composition template="/resources/templates/templLayout.xhtml">
             <ui:define name="content">
-                <h:panelGroup id="title">
-                    <p:outputLabel styleClass="title">Edit product</p:outputLabel>
-                </h:panelGroup>
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                    <p:outputLabel for="vehicle" value="Model: "/>
-                    <h:outputText value="#{product.vehicle}" id="vehicle" />
-                    <p:outputLabel for="quantity" value="Quantity: "/>
-                    <p:inputText id="quantity" value="#{product.quantity}"/>
-                    <p:outputLabel for="price" value="Price: "/>
-                    <p:inputText id="price" value="#{product.price}"/>
+                <h:form id="form">
+                    <h:panelGroup id="title">
+                        <p:outputLabel styleClass="title">Edit product</p:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="vehicle" value="Model: "/>
+                        <h:outputText value="#{prod.vehicle}" id="vehicle"/>
+                        <p:outputLabel for="quantity" value="Quantity: "/>
+                        <p:inputText id="quantity" value="#{prod.quantity}"/>
+                        <p:outputLabel for="price" value="Price: "/>
+                        <p:inputText id="price" value="#{prod.price}"/>
 
-                    <p:commandButton value="Submit" action="_eventId_updateProduct"
-                                     title="transition on=_eventId_updateProduct" icon="ui-icon-check"
-                                     update="display" oncomplete="PF('dlg').show()" />
+                        <p:commandButton value="Submit" action="_eventId_updateProduct" icon="ui-icon-check"
+                                         update="display" oncomplete="PF('dlg').show()"/>
 
-                    <p:dialog header="Saved" modal="true" resizable="false" showEffect="fade" widgetVar="dlg">
-                        <h:panelGrid columns="1" id="display">
-                            <h:outputText value="#{product} updated" />
-                        </h:panelGrid>
-                    </p:dialog>
-                </h:panelGrid>
+                        <p:dialog  style="background: white" header="Saved" modal="true"
+                                   resizable="false" showEffect="fade" widgetVar="dlg">
+                            <h:panelGrid columns="1" id="display">
+                                <h:outputText value="#{prod} updated"/>
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

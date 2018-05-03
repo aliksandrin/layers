@@ -15,7 +15,7 @@
                                  styleClass="data-table" widgetVar="carsTable">
                         <p:column headerText="Model"
                                   styleClass="column-table">
-                            <h:outputText value="#{p.vehicle.id}"/>
+                            <p:outputLabel value="#{p.vehicle.id}"/>
                         </p:column>
                         <p:column headerText="Brand"
                                   styleClass="column-table"
@@ -30,7 +30,7 @@
                                     <p:ajax update="@this"/>
                                 </p:selectOneMenu>
                             </f:facet>
-                            <h:outputText value="#{p.vehicle.brand}"/>
+                            <p:outputLabel value="#{p.vehicle.brand}"/>
                         </p:column>
                         <p:column headerText="Type" styleClass="column-table" filterBy="#{p.vehicle.type}"
                                   filterMatchMode="equals">
@@ -43,18 +43,17 @@
                                     <p:ajax update="@this"/>
                                 </p:selectOneMenu>
                             </f:facet>
-                            <h:outputText value="#{p.vehicle.type}"/>
+                            <p:outputLabel value="#{p.vehicle.type}"/>
                         </p:column>
                         <p:column headerText="Quantity" styleClass="column-table">
-                            <h:outputText value="#{p.quantity}"/>
+                            <p:outputLabel value="#{p.quantity}"/>
                         </p:column>
                         <p:column headerText="Price" styleClass="column-table">
-                            <h:outputText value="$ #{p.price}"/>
+                            <p:outputLabel value="$ #{p.price}"/>
                         </p:column>
                         <p:column styleClass="column-table">
-                            <p:commandButton action="_eventId_view" value="View" title="transition on=_eventId_view"
-                                             style="border: none">
-                                <f:param name="prod" value="${p}"/>
+                            <p:commandButton action="_eventId_view" value="View" style="border: none">
+                                <f:setPropertyActionListener value="#{p}" target="#{products.product}"/>
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>

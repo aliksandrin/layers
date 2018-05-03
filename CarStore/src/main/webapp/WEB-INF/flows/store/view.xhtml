@@ -7,19 +7,21 @@
     <h:body>
         <ui:composition template="/resources/templates/templLayout.xhtml">
             <ui:define name="content">
-                <h:panelGroup id="title">
-                    <p:outputLabel styleClass="title">Product</p:outputLabel>
-                </h:panelGroup>
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                    <p:outputLabel for="vehicle" value="Model: "/>
-                    <h:outputText value="#{productFlow.vehicle}" id="vehicle"/>
-                    <p:outputLabel for="quantity" value="Quantity: "/>
-                    <h:outputText value="#{productFlow.quantity}" id="quantity"/>
-                    <p:outputLabel for="price" value="Price: "/>
-                    <h:outputText value="#{productFlow.price}" id="price"/>
+                <h:form id="form">
+                    <h:panelGroup id="title">
+                        <p:outputLabel styleClass="title">Product</p:outputLabel>
+                    </h:panelGroup>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="vehicle" value="Model: "/>
+                        <h:outputText value="#{prod.vehicle}" id="vehicle"/>
+                        <p:outputLabel for="quantity" value="Quantity: "/>
+                        <h:outputText value="#{prod.quantity}" id="quantity"/>
+                        <p:outputLabel for="price" value="Price: "/>
+                        <h:outputText value="#{prod.price}" id="price"/>
 
-                    <p:commandButton action="_eventId_edit" title="transition on=_eventId_edit" value="#{productFlow}"/>
-                </h:panelGrid>
+                        <p:commandButton action="_eventId_editInfo" value="Edit"/>
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
